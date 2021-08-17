@@ -1,7 +1,7 @@
 import {Server} from "https://js.sabae.cc/Server.js";
 new Server(8001);
 
-export class User {
+export class TravelDB {
 	constructor() {
 		import { DB } from "https://deno.land/x/sqlite/mod.ts";
 		this.db = new DB("travel.db");
