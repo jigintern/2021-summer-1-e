@@ -7,7 +7,9 @@ export class Account {
 		this.comment = data[4];
 	}
 
+	getId() {return this.id}
 	getName() {return this.username;}
 	getEmail() {return this.email;}
+	getPassword() {return this.password}
 	getComment() {return this.comment;}
 }

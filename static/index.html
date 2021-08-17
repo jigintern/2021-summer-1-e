@@ -7,10 +7,10 @@
 
 <body>
     <script type="module">
-        import {AccountRepository} from "../src/AccountRepository.js";
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+        import {AccountRepository} from "src/AccountRepository.js";
 
-        console.log("test");
+        document.write(AccountRepository.findByName("TestUser").getName());
         
         window.onload = async () => {
             const data = await fetchJSON("api/account", {});
