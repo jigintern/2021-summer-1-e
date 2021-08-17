@@ -1,6 +1,14 @@
 import {Server} from "https://js.sabae.cc/Server.js";
 new Server(8001);
 
+class MyServer extends Server{
+	api(path, req){
+		if(path == "/api/username"){
+			
+		}
+	}
+}
+
 export class User {
 	constructor() {
 		import { DB } from "https://deno.land/x/sqlite/mod.ts";
