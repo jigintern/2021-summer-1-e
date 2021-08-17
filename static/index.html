@@ -8,6 +8,9 @@
 <body>
 <script type="module">
     import {TravelDB} from "main.js";
+    TravelDB.add("TestUser", "aiueo12345", "test@gmail.com", "jig.jp 入社しました");
+    console.log(TravelDB.findByName("TestUser").getEmail());
+    console.log(TravelDB.getDB());
 </script>
 </body>
 </html>
