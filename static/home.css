@@ -1,0 +1,29 @@
+h1 {
+    color: #6cb4e4;
+    text-align: center;
+    padding: 0.25em;
+    border-top: solid 2px #6cb4e4;
+    border-bottom: solid 2px #6cb4e4;
+    background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+  }
+form{
+    position: absolute;
+    top: 300px;
+    right: 200px;
+}
+input[type="search"]{
+    position:relative;
+
+    left: 200px;
+    width: 900px;
+    height: 100px;
+    font-size: 200%;
+}
+input[type="submit"]{
+    position:relative;
+    width: 200px;
+    height: 100px;
+    font-size: 200%;
+}
+  

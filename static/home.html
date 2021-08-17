@@ -10,9 +10,9 @@
             import { shuffle } from "https://js.sabae.cc/shuffle.js";
             import { search } from "https://js.sabae.cc/search.js";
             
-            window.onload = async () => {
+            onload = async () => {
               // ページ構築
-              const inputfilter = docment.getElementById("kensaku");
+              const inputfilter = document.getElementById("kensaku");
               const res = div();
               credit();
               style({ a: { color: "gray !important" }});
@@ -29,14 +29,14 @@
                 document.location.hash = "#" + inputfilter.value;
                 console.log(hits, hits.length);
                 res.innerHTML = "";
-                for (const d of hits) {
+                for (let i =0 ; i < 3; i++) {
                   const div = create("div");
                   div.style.margin = "1vw 0";
             
                   const img = new Image();
                   img.style.width = "50vw";
                   img.loading = "lazy"; // 画像は表示するときに読み込み
-                  img.src = d.url_thumb;
+                  img.src = hits[i].url_thumb;
                   div.appendChild(img);
          
                   res.appendChild(div);
@@ -58,9 +58,9 @@
     <body>
 
         <h1>TRIP LIST</h1>
-        <input  id="kensaku"  />
+        <input  type="search" id="kensaku" placeholder="キーワードを入力"  />
         <input type="submit" value="検索" />
-
+    <hr>
 
     </body>
 </html>
