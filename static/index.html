@@ -8,9 +8,8 @@
 <body>
     <script type="module">
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
-        import {AccountRepository} from "src/AccountRepository.js";
-
-        document.write(AccountRepository.findByName("TestUser").getName());
+        import {AccountRepository} from "../src/AccountRepository.js";
+        alert("jig.jp 入社しました");
         
         window.onload = async () => {
             const data = await fetchJSON("api/account", {});

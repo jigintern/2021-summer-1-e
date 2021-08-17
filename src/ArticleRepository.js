@@ -1,11 +1,5 @@
 import {DB} from "https://deno.land/x/sqlite/mod.ts";
 
-// Locationだけの情報なら LocationRepositoryでもいいと思う
-// ↑ 左のファイルツリー(ファイルやフォルダが並んでいるところ)から、今編集しているファイルを右クリックするとメニューが表示される
-// ↑ そこから、名前を変更っていうところがあると思うので、そこから変更できるよ！(下部分にあります)
-
-// 記事(ルート?)の情報なら大丈夫！  <- 記事の情報をここで実装して、locationの情報も持つ、という意味
-// 見たらコメント消してOK!
 export class ArticleRepository {
     static init(){
         self.db = new DB("article.db");
@@ -13,8 +7,8 @@ export class ArticleRepository {
 			CREATE TABLE IF NOT EXISTS article (
 		        id INTEGER PRIMARY KEY,
 		        name TEXT,
-				location_x INTEGER,
-                location_y INTEGER,
+				location_x TEXT,
+                location_y TEXT,
 		        time TEXT
 		    )
 		`);
@@ -36,4 +30,9 @@ export class ArticleRepository {
 
         console.log("completed save location data");
     }
+
+    static findBy(id, value) {
+		return this.getDB().query("SELECT * FROM accounts WHERE " + id + " = '" + value + "';");
+	}
 }
+

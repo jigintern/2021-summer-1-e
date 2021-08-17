@@ -1,7 +1,7 @@
 import {DB} from "https://deno.land/x/sqlite/mod.ts";
 import {Account} from "./Account.js";
 
-export class AccountRepository {
+export default class AccountRepository {
 	static init() {
 		self.db = new DB("account.db");
 		self.db.query(`
@@ -44,6 +44,8 @@ export class AccountRepository {
 				}
 			}
 		}
+
+		return null;
 	}
 
 	static findByName(username, password) {
