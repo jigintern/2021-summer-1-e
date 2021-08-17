@@ -6,11 +6,16 @@
 </head>
 
 <body>
-<script type="module">
-    import {TravelDB} from "main.js";
-    TravelDB.add("TestUser", "aiueo12345", "test@gmail.com", "jig.jp 入社しました");
-    console.log(TravelDB.findByName("TestUser").getEmail());
-    console.log(TravelDB.getDB());
-</script>
+    <script type="module">
+        import {AccountRepository} from "../src/AccountRepository.js";
+        import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+
+        console.log("test");
+        
+        window.onload = async () => {
+            const data = await fetchJSON("api/account", {});
+        }
+    </script>
 </body>
+
 </html>
