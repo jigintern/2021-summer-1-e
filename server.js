@@ -1,5 +1,5 @@
 import {Server} from "https://js.sabae.cc/Server.js";
-import {AccountRepository} from "./src/AccountRepository.js";
+import {AccountRepository} from "./static/src/AccountRepository.js";
 
 class MyServer extends Server {
 	constructor(port) {
