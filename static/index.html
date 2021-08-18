@@ -7,36 +7,37 @@
 
 <body>
 
-    <button id=btn1>send</button>
-    <button id=btn2>send</button>
+    <input id=accountName name="name">
+    <input id=accountEmail name="email">
+    <input id=accountPassword name="password">
+
+    <button id=btn1>addAccount</button>
+    <button id=btn2>addArticle</button>
 
     <script type="module">
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
-        
-        window.onload = async () => {
-            const data = await fetchJSON("api/account/add", {
-                username: "tanaka", password: "1234", email: "tanaka@c.jp", comment: "かっこいい"
-            });
-
-            const data = await fetchJSON("api/account/find", {
-                key: "tanaka", password: "1234"
-            });
-
-            console.log(data);
-        }
 
         btn1.onclick = async () => {
-            const data = await fetchJSON("api/account/add", {
-                username: "tanaka", password: "1234", email: "tanaka@c.jp", comment: "かっこいい"
+            const addAccountResult = await fetchJSON("api/account/add", {
+                username: accountName.value,
+                password: accountPassword.value,
+                email: accountEmail.value,
+                comment: "入社します"
             });
+
+            console.log(addAccountResult);
         }
 
         btn2.onclick = async () => {
             const data = await fetchJSON("api/article/add", {
-                    id_user: "123", name: "富士山", location_x: "54, 64, 10", location_y: "100, 456, 10", time: "10時50分", tag: "富士山、すご"
+                id_user: "123",
+                name: "富士山",
+                location_x: "54, 64, 10",
+                location_y: "100, 456, 10",
+                time: "10時50分",
+                tag: "富士山、すごい"
             });
         }
-
     </script>
 </body>
 

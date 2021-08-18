@@ -22,6 +22,12 @@ export class ArticleRepository {
 	}
 
     add_data(id_user,  name, location_x, location_y, time, tag){
+
+        if(id_user == null || name == null || location_x == null || location_y == null || time == null || tag == null){
+            console.log("不明な経路データが追加されました");
+            return false;
+        }
+
         this.getDB().query(
             "INSERT INTO article (id_user, name, location_x, location_y, time) VALUES ('" +
             id_user + "', '" +
@@ -32,15 +38,16 @@ export class ArticleRepository {
             tag + "')"
         )
 
-        console.log("completed save location data");
+        console.log("経路データが追加されました \"" + name + "\"");
+
+        return true;
     }
 
-    findBy(id_user, value) {
+    findBy(id, value) {
 		return this.getDB().query("SELECT * FROM article WHERE " + id_user + " = '" + value + "';");
 	}
 
-    fingById(id, val){
-        return this.findBy(id, val);
+    fingById(val){
+        return this.findBy("id_user", val);
     }
 }
-

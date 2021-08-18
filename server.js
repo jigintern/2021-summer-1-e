@@ -12,16 +12,36 @@ class MyServer extends Server {
 	async api(path, req) {
 		switch(path) {
 			case "/api/account/add":
-				this.accountRepository.add(req.username, req.password, req.email, req.comment);
-				break;
+				return this.accountRepository.add(
+					req['username'],
+					req['password'],
+					req['email'],
+					req['comment']
+				);
+
 			case "/api/account/find":
-				console.log(req['key'], req['password']);
-				return this.accountRepository.find(req['key'], req['password']);
+				return this.accountRepository.find(
+					req['key'],
+					req['password']
+				);
+
 			case "/api/article/add":
-				this.articleRepository.add_data(req.id_user, req.name, req.location_x, req.location_y, req.time, req.tag);
-				break;
+				return this.articleRepository.add_data(
+					req['id_user'],
+					req['name'],
+					req['location_x'],
+					req['location_y'],
+					req['time'],
+					req['tag']
+				);
+
+			case "/api/article/find":
+				return this.articleRepository.findById(
+					req['id_user']
+				);
+
 			default:
-				console.log("Error");
+				console.log("予期していないリクエスト", req);
 				break;
 		}
 	}
