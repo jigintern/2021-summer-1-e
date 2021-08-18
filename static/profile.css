@@ -1,0 +1,73 @@
+
+h1[class="main"] {
+    color: #6cb4e4;
+    text-align: center;
+    padding: 0.25em;
+    border-top: solid 2px #6cb4e4;
+    border-bottom: solid 2px #6cb4e4;
+    background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}
+a[id="homepage"]{
+    color: #6cb4e4;
+    text-align: center;
+    padding: 0.25em;
+    border-top: solid 2px #6cb4e4;
+    border-bottom: solid 2px #6cb4e4;
+    background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    text-decoration: none;
+}
+img[id="profileimg"]{
+    position:relative;
+    top:90px;
+    left:50px;
+}
+div[id="profile"]{
+    height: 450px;
+    border-radius:30px;
+    width: 50%;
+    background-color: rgba(200, 255, 255, 0.993);
+    
+    position:relative;
+    left:500px;
+    top:-300px;
+}
+div[id="profilemain"]{
+    background: #e1f3ff;
+    background-image: 
+      radial-gradient(#c8e4ff 30%, transparent 0),
+      radial-gradient(#c8e4ff 30%, transparent 0);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    height: 600px;
+}
+div[id="profile_text"]{
+    text-align: center;
+
+}
+h2[id="username"]{
+    font-size: 50px;
+}
+h3{
+    margin-top:70px;
+    font-size:30px;
+}
+
+.tripbox{
+    padding: 8px 19px;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #cde4ff;
+    border-top: solid 5px #5989cf;
+    border-bottom: solid 5px #5989cf;
+}
+.tripbox p {
+    margin: 0; 
+    padding: 0;
+    font-size: 40px;
+}
+h2[id="triptitle"]{
+    font-size: 40px;
+    margin: 5px;
+}
