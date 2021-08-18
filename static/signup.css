@@ -36,7 +36,7 @@ h1[class="main"] {
 }
  
 /* ユーザーIDとパスワードとメールアドレス入力ボックスのスタイル */
-.box input[type="text"], .box input[type="password"]{
+.box input[type="text"], .box input[type="password"],.box input[type="mailaddress"]{
     border: 0;
     background: none;
     display: block;
@@ -52,7 +52,7 @@ h1[class="main"] {
 }
  
 /* 入力ボックスがフォーカスされたときのスタイル（幅が大きくなる＆枠の色が変わる） */
-.box input[type="text"]:focus, .box input[type="password"]:focus{
+.box input[type="text"]:focus, .box input[type="password"]:focus, .box input[type="mailaddress"]:focus{
     width: 280px;
     border-color: #000000;
 }
@@ -73,7 +73,7 @@ h1[class="main"] {
     cursor: pointer;
     font-size:15px;
 }
-.box input[type="text"]:hover,.box input[type="password"]:hover{
+.box input[type="text"]:hover,.box input[type="password"]:hover,.box input[type="mailaddress"]:hover{
     background: #b6f3df;
      
 }
