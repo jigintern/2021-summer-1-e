@@ -1,0 +1,85 @@
+h1[class="main"] {
+    color: #6cb4e4;
+    text-align: center;
+    padding: 0.25em;
+    border-top: solid 2px #6cb4e4;
+    border-bottom: solid 2px #6cb4e4;
+    background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #ffffff;
+}
+ 
+/*ログインフォームのエリア内のスタイル*/
+.box{
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e3e6ff;
+    text-align: center;
+    border-radius:30px;
+}
+ 
+.box{
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+ 
+/* ユーザーIDとパスワードとメールアドレス入力ボックスのスタイル */
+.box input[type="text"], .box input[type="password"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid #ff0000;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: rgb(131, 57, 57);
+    border-radius: 24px;
+    transition: 0.25s;
+}
+ 
+/* 入力ボックスがフォーカスされたときのスタイル（幅が大きくなる＆枠の色が変わる） */
+.box input[type="text"]:focus, .box input[type="password"]:focus{
+    width: 280px;
+    border-color: #000000;
+}
+ 
+/* signupボタンのスタイル */
+.box input[type="submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #557796;;
+    padding: 14px 40px;
+    outline: none;
+    color: rgb(0, 0, 0);
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size:15px;
+}
+.box input[type="text"]:hover,.box input[type="password"]:hover{
+    background: #b6f3df;
+     
+}
+ 
+/* signupボタンをマウスオーバーしたときのスタイル */
+.box input[type="submit"]:hover{
+    background: #b6f3df;
+    color: #ff5f5f;
+     
+}
