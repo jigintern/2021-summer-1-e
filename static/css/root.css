@@ -8,8 +8,6 @@
     background-attachment: fixed;
     background-size: cover;
   }
-  
-
   .position1{
     position: absolute;
     top: 0px;
@@ -164,7 +162,6 @@
   .inText::-ms-clear {
     display     : none;                      /* ×を消す   */
   }
-
 
   .textArea {
     width         : 700px;               /* 入力域の最大幅 */

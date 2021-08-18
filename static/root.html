@@ -5,20 +5,13 @@
         <link rel="stylesheet" href="css/root.css" type="text/css">
         <script type="text/javascript" src="root.js"></script>
         <script type="module" src="comment.js"></script>
-
-        <meta charset="utf-8"><meta name="viewport" content="width=device-width">
         <title>ル－ト</title>
-        <meta charset="utf-8"><meta name="viewport" content="width=device-width">
-        
-
-       <!--<link rel="stylesheet" href="css/sakura.css" type="text/css">-->
     </head>
     <body>
         <h2>ルート</h2>  
         <input type="button" value="ルート1" onclick="clickBtn1()" class="button1"/>
         <div id="p1" class="hidden">ルート詳細</div>
         <script>
-        //初期表示は非表示
         document.getElementById("p1").style.display ="none";
         </script>
         <div class="formBalloon" style="position: absolute; z-index: 2;">
@@ -47,7 +40,6 @@
         <div class="position2">
             <h2>コメント</h2>
         <div id=container></div>
-
         <div class=writebox>
             <input type="text" class="inText" id=inp_name
             placeholder="名前"
@@ -61,7 +53,6 @@
             onchange="textAreaHeightSet(this)"></textarea><br>
             <button class="btn-square" id=btn_write>書き込む</button>
         </div>
-        </div>
-        
+        </div>   
     </body>
 </html> 
