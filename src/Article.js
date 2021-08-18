@@ -5,11 +5,13 @@ export class Article {
 		this.location_x = data[2];
 		this.location_y = data[3];
 		this.time = data[4];
+		this.tag = data[5];
 	}
 
 	getId() {return this.id}
-	getName() {return this.username;}
-	getEmail() {return this.email;}
-	getPassword() {return this.password}
-	getComment() {return this.comment;}
+	getName() {return this.name;}
+	getLocation_x() {return this.location_x;}
+	getLocation_y() {return this.location_y}
+	getTime() {return this.time;}
+	getTag() {return this.tag;}
 }

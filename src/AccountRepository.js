@@ -1,10 +1,10 @@
 import {DB} from "https://deno.land/x/sqlite/mod.ts";
 import {Account} from "./Account.js";
 
-export default class AccountRepository {
-	static init() {
-		self.db = new DB("account.db");
-		self.db.query(`
+export class AccountRepository {
+	constructor() {
+		this.db = new DB("account.db");
+		this.db.query(`
 			CREATE TABLE IF NOT EXISTS accounts (
 		        id INTEGER PRIMARY KEY AUTOINCREMENT,
 		        username TEXT,
@@ -15,11 +15,11 @@ export default class AccountRepository {
 		`);
 	}
 	
-	static getDB() {
-		return self.db;
+	getDB() {
+		return this.db;
 	}
 	
-	static add(username, password, email, comment) {
+	add(username, password, email, comment) {
 		this.getDB().query(
             "INSERT INTO accounts (username, password, email, comment) VALUES ('" +
             username + "', '" +
@@ -31,12 +31,21 @@ export default class AccountRepository {
 		console.log("add record \"" + username + "\"");
 	}
 
-	static findBy(key, value) {
+	find(key, password) {
+		const validate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return (validate.test(key) ? this.findByEmail(key, password) : this.findByName(key, password));
+	}
+
+	findBy(key, value) {
 		return this.getDB().query("SELECT * FROM accounts WHERE " + key + " = '" + value + "';");
 	}
 
-	static findAccountBy(dataKey, dataValue, password) {
+	findAccountBy(dataKey, dataValue, password) {
 		const data = this.findBy(dataKey, dataValue)[0];
+		if(data === undefined) {
+			return;
+		}
+		
 		if(data.isArray()) {
 			if(data.indexOf(2) === 1) {
 				if(data[2] === password) {
@@ -48,11 +57,11 @@ export default class AccountRepository {
 		return null;
 	}
 
-	static findByName(username, password) {
+	findByName(username, password) {
 		return this.findAccountBy("username", username, password);
 	}
 
-	static findByEmail(email, password) {
+	findByEmail(email, password) {
 		return this.findAccountBy("email", email, password);
 	}
 }

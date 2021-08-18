@@ -5,15 +5,36 @@
     <title>旅行</title>
 </head>
 
+<div id="sample">1</div>
+<div id="sampleButton">
+    <button onclick="funcAdd1()">add_user</button>
+    <button onclick="funcAdd2()">add_data</button>
+</div>
+
 <body>
     <script type="module">
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
-        import {AccountRepository} from "../src/AccountRepository.js";
-        alert("jig.jp 入社しました");
         
         window.onload = async () => {
-            const data = await fetchJSON("api/account", {});
+            const data = await fetchJSON("api/account/find", {
+                key: "TestUser", password: "aiueo12345"
+            });
+
+            console.log(data);
         }
+
+        function funcAdd1(){
+            const data = await fetchJSON("api/account/add", {
+                username: "tanaka", password: "1234", email: "tanaka@c.jp", comment: "かっこいい"
+            });
+        }
+
+        function funcAdd2(){
+            const data = await fetchJSON("api/article/add", {
+                id_user: "123", name: "富士山", location_x: "54, 64, 10", location_y: "100, 456, 10", time: "10時50分", tag: "富士山、すご"
+            });
+        }
+
     </script>
 </body>
 
