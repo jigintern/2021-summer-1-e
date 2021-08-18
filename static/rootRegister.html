@@ -61,7 +61,12 @@
         </div>
         <div class="position2">
             <h2>投稿者コメント</h2>
-            <input type="text" class="inText" placeholder="コメント" onblur="coloeSet(this)" onfocus="colorReset(this)"><br>  
+            <textarea class="textArea" id="inText"
+            placeholder="ＸＸ入力してください"
+            onblur="coloeSet(this)"
+            onfocus="colorReset(this)"
+            oninput="textAreaHeightSet(this)"
+            onchange="textAreaHeightSet(this)"></textare><br>
             <button class="btn-square" id=btn_write>書き込む</button> 
     </body>
 </html> 
