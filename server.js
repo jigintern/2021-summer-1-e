@@ -18,15 +18,23 @@ class MyServer extends Server {
 					req['email'],
 					req['comment']
 				);
-
 			case "/api/account/find":
 				return this.accountRepository.find(
 					req['key'],
 					req['password']
 				);
+			case "/api/account/exist":
+				const result = this.accountRepository.exists(
+					req['key'],
+					req['value']
+				);
+
+				console.log(result);
+				return result;
 
 			case "/api/article/add":
-				return this.articleRepository.add_data(
+				return 'test'
+				return this.articleRepository.add(
 					req['id_user'],
 					req['name'],
 					req['location_x'],

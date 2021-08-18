@@ -20,12 +20,6 @@ export class AccountRepository {
 	}
 	
 	add(username, password, email, comment) {
-		console.log(this.findByEmail(email));
-		if(this.findByEmail(email) !== null) {
-			console.log("既に使用されているメールアドレス \"" + email + "\"");
-			return false;
-		}
-
 		this.getDB().query(
             "INSERT INTO accounts (username, password, email, comment) VALUES ('" +
             username + "', '" +
@@ -34,14 +28,12 @@ export class AccountRepository {
             comment + "');"
         )
 
-		console.log("アカウントが追加されました \"" + username + "\"");
-		return true;
+		return "アカウントが追加されました \"" + username + "\"";
 	}
 
 	find(key, password) {
 		const validate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		const result = (validate.test(key) ? this.findByEmail(key, password) : this.findByName(key, password));
-		return result;
+		return (validate.test(key) ? this.findByEmail(key, password) : this.findByName(key, password));
 	}
 
 	findBy(key, value) {
@@ -68,5 +60,10 @@ export class AccountRepository {
 
 	findByEmail(email, password) {
 		return this.findAccountBy("email", email, password);
+	}
+
+	exists(key, value) {
+		const result = this.findBy(key, value);
+		return result[0] !== undefined;
 	}
 }
