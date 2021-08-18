@@ -71,11 +71,11 @@
         }
 
         btn4.onclick = async () => {
-            const addDataResult = await fetchJSON("api/article/find", {
+            const serchIDResult = await fetchJSON("api/article/find", {
                 id_user: "123"
             });
 
-            console.log(addDataResult)
+            console.log(serchIDResult)
         }
 
         btn5.onclick = async () => {
@@ -83,7 +83,7 @@
                 serch_tag: "huji"
             });
 
-            console.log(addDataResult)
+            console.log(serchDataResult)
         }
         
     </script>
