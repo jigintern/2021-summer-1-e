@@ -6,13 +6,36 @@
         <link rel="stylesheet" href="signup.css">
     </head>
     <body>
-        <h1 class="main"><a href="./home.html">TRIP LIST</a></h1>
-        <form class="box" action="URL" method="post">
+        <h1 class="main"><a href="./index.html">TRIP LIST</a></h1>
+        <form class="box" action="./index.html" method="post">
             <h1>SIGNUP</h1>
             <input id="text" type="text" name="" placeholder="Username">
             <input id="password" type="password" name="" placeholder="Password">
             <input id="mailaddress" type="mailaddress" name="" placeholder="mailaddress">
             <input id="submit" type="submit" name="" value="signup" onclick="(getdata)">
+
         </form>
+        <script type="module">
+        
+        import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+
+        submit.onclick = async () => {
+            const existResult = await fetchJSON("api/account/exist", {
+                key: "email",
+                value: accountEmail.value
+            });
+
+            if(existResult) {
+                alert("アカウントが存在します");
+            } else {
+                await fetchJSON("api/account/add", {
+                    username: text.value,
+                    password: password.value,
+                    email: mailaddress.value,
+                    comment: "入社します"
+                });
+            }
+        }
+        </script>
     </body>
 </html>

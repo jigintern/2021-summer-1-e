@@ -1,92 +1,82 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>旅行</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="home.css">
+        <title>TRIP LIST</title>
+        <script type=module>
+            import { create, add, style, h1, inp, div, link } from "https://js.sabae.cc/stdom.js";
+            import { CSV } from "https://code4sabae.github.io/js/CSV.js";
+            import { shuffle } from "https://js.sabae.cc/shuffle.js";
+            import { search } from "https://js.sabae.cc/search.js";
+            
+            onload = async () => {
+            // ページ構築
+            const inputfilter = document.getElementById("kensaku");
+            const res = div();
+            credit();
+            style({ a: { color: "gray !important" }});
+            
+            // データ読み込み
+            const url = "https://code4fukui.github.io/find47/find47images.csv";
+            const data = CSV.toJSON(await CSV.fetch(url));
+            console.log(data);
+            shuffle(data);
+            
+            // 検索表示機能
+            inputfilter.onchange = inputfilter.onkeyup = () => {
+            const hits = search(data, inputfilter.value);
+            document.location.hash = "#" + inputfilter.value;
+            console.log(hits, hits.length);
+            res.innerHTML = "";
+            for (let i =0 ; i < 3; i++) {
+                const div = create("div");
+                div.style.margin = "1vw 0";
+            
+                const img = new Image();
+                img.style.width = "50vw";
+                img.loading = "lazy"; // 画像は表示するときに読み込み
+                img.src = hits[i].url_thumb;
+                div.appendChild(img)
+                const div2 = create("div");
+                div2.style.display = "inline-block";
+                div2.style.width = "35vw";
+                div2.style.padding = "1vw";
+                div2.style.verticalAlign = "top";
+                div.appendChild(div2);
+                const span2 = create("span");
+                span2.textContent = hits[i].pref;
+                span2.style.display = "block";
+                div2.appendChild(span2);
+                const span = create("a");
+                span.textContent = hits[i].title;
+                span.href = hits[i].url;
+                span.style.display = "block";
+                div2.appendChild(span)
+                res.appendChild(div);
+                }
+              };
+            
+              // 初期画面
+              inputfilter.onchange();
+            };
+            const credit = () => {
+                add("hr");
+                link("写真 CC BY FIND47", "https://find47.jp/");
+                link("データ CC BY Code for Fukui", "https://github.com/code4fukui/find47/");
+                link("アプリ CC BY Code for Fukui", "https://fukuno.jig.jp/3226");
+            };
+            </script>
+    </head>
+    <body>
 
-<body>
+        <h1><a id="homepage" href="./index.html">TRIP LIST</a></h1>
+        <input  type="search" id="kensaku" placeholder="キーワードを入力"  />
+        <input type="button" value="検索" onclick="(location.reload())"/>
+        <a title="サインアップはこちら" id="signup_page" href="./signup.html" target="_blank" rel="noopener">サインアップ</a>
+        <a title="ログインはこちら" id="login_page" href="./login.html" target="_blank" rel="noopener">ログイン</a>
+        <a title="プロフィール(仮)" id="profile_page" href="./profile.html" target="_blank" rel="noopener">プロフィール(仮)</a>
+    <hr>
 
-    <p>name</p>
-    <input id=accountName name="name">
-    <p>email</p>
-    <input id=accountEmail name="email">
-    <p>password</p>
-    <input id=accountPassword name="password">
-
-    <p>buttons</p>
-    <button id=btn1>addAccount</button>
-    <button id=btn2>addArticle</button>
-    <button id=btn3>addArticle</button>
-    <button id=btn4>find_ar</button>
-    <button id=btn5>serch_tag</button>
-
-    <script type="module">
-        import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
-
-        btn1.onclick = async () => {
-            const existResult = await fetchJSON("api/account/exist", {
-                key: "email",
-                value: accountEmail.value
-            });
-
-            if(existResult) {
-                alert("アカウントが存在します");
-            } else {
-                const addAccountResult = await fetchJSON("api/account/add", {
-                    username: accountName.value,
-                    password: accountPassword.value,
-                    email: accountEmail.value,
-                    comment: "入社します"
-                });
-
-                alert(addAccountResult);
-            }
-        }
-
-        btn2.onclick = async () => {
-            const addDataResult = await fetchJSON("api/article/add", {
-                id_user: "123",
-                name: "fuji",
-                location_x: "54, 64, 10",
-                location_y: "100, 456, 10",
-                time: "10",
-                tag: "jiji"
-            });
-
-            console.log(addDataResult)
-        }
-
-        btn3.onclick = async () => {
-            const addDataResult = await fetchJSON("api/article/add", {
-                id_user: "5",
-                name: "Moon",
-                location_x: "999, 999, 999",
-                location_y: "100, 999, 999",
-                time: "10:10:12",
-                tag: "pj, gij, huji, jig.jp"
-            });
-
-            console.log(addDataResult)
-        }
-
-        btn4.onclick = async () => {
-            const serchIDResult = await fetchJSON("api/article/find", {
-                id_user: "123"
-            });
-
-            console.log(serchIDResult)
-        }
-
-        btn5.onclick = async () => {
-            const serchDataResult = await fetchJSON("api/article/serch_tag", {
-                serch_tag: "huji"
-            });
-
-            console.log(serchDataResult)
-        }
-        
-    </script>
-</body>
-
+    </body>
 </html>

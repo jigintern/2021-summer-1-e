@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>旅行</title>
+</head>
+
+<body>
+
+    <p>name</p>
+    <input id=accountName name="name">
+    <p>email</p>
+    <input id=accountEmail name="email">
+    <p>password</p>
+    <input id=accountPassword name="password">
+
+    <p>buttons</p>
+    <button id=btn1>addAccount</button>
+    <button id=btn2>addArticle</button>
+    <button id=btn3>addArticle</button>
+    <button id=btn4>find_ar</button>
+    <button id=btn5>serch_tag</button>
+
+    <script type="module">
+        import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+
+        btn1.onclick = async () => {
+            const existResult = await fetchJSON("api/account/exist", {
+                key: "email",
+                value: accountEmail.value
+            });
+
+            if(existResult) {
+                alert("アカウントが存在します");
+            } else {
+                const addAccountResult = await fetchJSON("api/account/add", {
+                    username: accountName.value,
+                    password: accountPassword.value,
+                    email: accountEmail.value,
+                    comment: "入社します"
+                });
+
+                alert(addAccountResult);
+            }
+        }
+
+        btn2.onclick = async () => {
+            const addDataResult = await fetchJSON("api/article/add", {
+                id_user: "123",
+                name: "fuji",
+                location_x: "54, 64, 10",
+                location_y: "100, 456, 10",
+                time: "10",
+                tag: "jiji"
+            });
+
+            console.log(addDataResult)
+        }
+
+        btn3.onclick = async () => {
+            const addDataResult = await fetchJSON("api/article/add", {
+                id_user: "5",
+                name: "Moon",
+                location_x: "999, 999, 999",
+                location_y: "100, 999, 999",
+                time: "10:10:12",
+                tag: "pj, gij, huji, jig.jp"
+            });
+
+            console.log(addDataResult)
+        }
+
+        btn4.onclick = async () => {
+            const serchIDResult = await fetchJSON("api/article/find", {
+                id_user: "123"
+            });
+
+            console.log(serchIDResult)
+        }
+
+        btn5.onclick = async () => {
+            const serchDataResult = await fetchJSON("api/article/serch_tag", {
+                serch_tag: "huji"
+            });
+
+            console.log(serchDataResult)
+        }
+        
+    </script>
+</body>
+
+</html>
