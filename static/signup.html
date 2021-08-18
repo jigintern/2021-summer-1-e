@@ -42,15 +42,12 @@
             if(existResult) {
                 alert("アカウントが存在しています");
             } else {
-                await fetchJSON("api/account/add", {
+                const data = await fetchJSON("api/account/add", {
                     username: text.value,
                     password: password.value,
                     email: mailaddress.value,
                     comment: "入社します"
                 });
-
-                alert("アカウントが作成されました！");
-                location.href = "/index.html"
             }
         }
         
