@@ -48,6 +48,11 @@ class MyServer extends Server {
 					req['id_user']
 				);
 
+			case "/api/article/find":
+				return this.articleRepository.serchTag(
+					req['serch_tag']
+				);
+
 			default:
 				console.log("予期していないリクエスト", req);
 				break;

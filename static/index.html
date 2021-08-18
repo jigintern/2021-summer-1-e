@@ -19,6 +19,7 @@
     <button id=btn2>addArticle</button>
     <button id=btn3>addArticle</button>
     <button id=btn4>find_ar</button>
+    <button id=btn5>serch_tag</button>
 
     <script type="module">
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
@@ -72,6 +73,14 @@
         btn4.onclick = async () => {
             const addDataResult = await fetchJSON("api/article/find", {
                 id_user: "123"
+            });
+
+            console.log(addDataResult)
+        }
+
+        btn5.onclick = async () => {
+            const serchDataResult = await fetchJSON("api/article/find", {
+                serch_tag: "huji"
             });
 
             console.log(addDataResult)
