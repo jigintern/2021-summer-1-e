@@ -33,7 +33,6 @@ class MyServer extends Server {
 				return result;
 
 			case "/api/article/add":
-				return 'test'
 				return this.articleRepository.add(
 					req['id_user'],
 					req['name'],
