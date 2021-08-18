@@ -47,6 +47,6 @@ export class ArticleRepository {
     }
 
     serchTag(serch_tag){
-        return this.getDB().query("SELECT * FROM articles WHERE tag LIKE '" + serch_tag + "';");
+        return this.getDB().query("SELECT * FROM articles WHERE tag LIKE '%" + serch_tag + "%';");
     }
 }

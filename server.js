@@ -48,7 +48,7 @@ class MyServer extends Server {
 					req['id_user']
 				);
 
-			case "/api/article/find":
+			case "/api/article/serch_tag":
 				return this.articleRepository.serchTag(
 					req['serch_tag']
 				);
