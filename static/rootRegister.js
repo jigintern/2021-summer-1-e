@@ -1,6 +1,5 @@
-
 import L from 'https://code4sabae.github.io/leaflet-mjs/leaflet.mjs'
-
+            
 window.onload = async function() {
     const data = [
     { lat: 35.943560, lng: 136.188917, name: '鯖江駅' },
@@ -10,7 +9,7 @@ window.onload = async function() {
     ]
 
     const map = L.map('mapid')
-    set 国土地理院地図 https://maps.gsi.go.jp/development/ichiran.html
+    // set 国土地理院地図 https://maps.gsi.go.jp/development/ichiran.html
     L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", {
         attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>"',
         maxZoom: 18,
