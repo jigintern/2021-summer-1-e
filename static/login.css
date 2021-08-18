@@ -7,6 +7,7 @@ h1[class="main"] {
     border-bottom: solid 2px #6cb4e4;
     background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
     background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    font-size:60px;
   }
 
   body{
