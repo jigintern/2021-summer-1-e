@@ -58,7 +58,6 @@
               };
             
               // 初期画面
-              inputfilter.value = decodeURIComponent(document.location.hash.substring(1)) || "福井";
               inputfilter.onchange();
             };
             const credit = () => {
@@ -74,6 +73,7 @@
         <h1>TRIP LIST</h1>
         <input  type="search" id="kensaku" placeholder="キーワードを入力"  />
         <input type="button" value="検索" onclick="(location.reload())"/>
+        <a title="サインアップはこちら" id="signup_page" href="./signup.html" target="_blank" rel="noopener">サインアップ</a>
         <a title="ログインはこちら" id="login_page" href="./login.html" target="_blank" rel="noopener">ログイン</a>
     <hr>
 

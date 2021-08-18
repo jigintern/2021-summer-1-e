@@ -27,8 +27,13 @@ input[type="button"]{
     font-size: 200%;
 }
 
+a[id="signup_page"]{
+    position:relative;
+    left:100px;
+    font-size:50px;
+}
 a[id="login_page"]{
-    position:absolute;
-    left:1700px;
+    position:relative;
+    left:150px;
     font-size:50px;
 }
