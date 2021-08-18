@@ -13,7 +13,7 @@ window.onload = async () => {
     for (const d of data) {
         const div = document.createElement("div");
         div.className = "bbsitem";
-        div.innerHTML = `<span class=date>${enc(d.date)}</span> by <span class=name>${enc(d.name)}</span>
+        div.innerHTML = `</span> by <span class=name>${enc(d.name)}　　　<span class=date>${enc(d.date)}</span>
             <div class=body>${enc(d.body)}</div>`
         container.appendChild(div);
     }
