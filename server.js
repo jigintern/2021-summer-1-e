@@ -15,9 +15,8 @@ class MyServer extends Server {
 				this.accountRepository.add(req.username, req.password, req.email, req.comment);
 				break;
 			case "/api/account/find":
-				console.log(req);
-				console.log(JSON.parse(req));
-				return this.accountRepository.find(req.key, req.password);
+				console.log(req['key'], req['password']);
+				return this.accountRepository.find(req['key'], req['password']);
 			case "/api/article/add":
 				this.articleRepository.add_data(req.id_user, req.name, req.location_x, req.location_y, req.time, req.tag);
 				break;

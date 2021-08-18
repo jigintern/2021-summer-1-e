@@ -5,33 +5,35 @@
     <title>旅行</title>
 </head>
 
-<div id="sample">1</div>
-<div id="sampleButton">
-    <button onclick="funcAdd1()">add_user</button>
-    <button onclick="funcAdd2()">add_data</button>
-</div>
-
 <body>
+
+    <button id=btn1>send</button>
+    <button id=btn2>send</button>
+
     <script type="module">
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
         
         window.onload = async () => {
+            const data = await fetchJSON("api/account/add", {
+                username: "tanaka", password: "1234", email: "tanaka@c.jp", comment: "かっこいい"
+            });
+
             const data = await fetchJSON("api/account/find", {
-                key: "TestUser", password: "aiueo12345"
+                key: "tanaka", password: "1234"
             });
 
             console.log(data);
         }
 
-        function funcAdd1(){
+        btn1.onclick = async () => {
             const data = await fetchJSON("api/account/add", {
                 username: "tanaka", password: "1234", email: "tanaka@c.jp", comment: "かっこいい"
             });
         }
 
-        function funcAdd2(){
+        btn2.onclick = async () => {
             const data = await fetchJSON("api/article/add", {
-                id_user: "123", name: "富士山", location_x: "54, 64, 10", location_y: "100, 456, 10", time: "10時50分", tag: "富士山、すご"
+                    id_user: "123", name: "富士山", location_x: "54, 64, 10", location_y: "100, 456, 10", time: "10時50分", tag: "富士山、すご"
             });
         }
 
