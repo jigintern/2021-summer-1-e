@@ -22,18 +22,20 @@
         submit.onclick = async () => {
             const existResult = await fetchJSON("api/account/exist", {
                 key: "email",
-                value: accountEmail.value
+                value: mailaddress.value
             });
 
             if(existResult) {
                 alert("アカウントが存在します");
             } else {
-                await fetchJSON("api/account/add", {
+                const data = await fetchJSON("api/account/add", {
                     username: text.value,
                     password: password.value,
                     email: mailaddress.value,
                     comment: "入社します"
                 });
+
+                console.log(data);
             }
         }
         </script>
