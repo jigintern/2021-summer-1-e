@@ -7,26 +7,40 @@
     </head>
     <body>
         <h1 class="main"><a href="./index.html">TRIP LIST</a></h1>
-        <form class="box" action="./index.html" method="post">
+        <form class="box" onsubmit="return false">
             <h1>SIGNUP</h1>
             <input id="text" type="text" name="" placeholder="Username">
             <input id="password" type="password" name="" placeholder="Password">
-            <input id="mailaddress" type="mailaddress" name="" placeholder="mailaddress">
-            <input id="submit" type="submit" name="" value="signup" onclick="(getdata)">
+            <input id="mailaddress" type="mailaddress" name="mailaddress" placeholder="mailaddress">
+            <input id="submit" type="submit" name="" value="signup" >
 
         </form>
         <script type="module">
         
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
 
+        window.onload = () => {
+            // form = document.getElementById('submit');
+            // form.addEventListener('click', buttonClick);
+        }
+        // document.getElementById('submit');
+
+        // submit.onclick = async () =>{
+        //     alert("1アカウントが作成されました！");
+        // }
+        
+         
+        
         submit.onclick = async () => {
+            console.log("click!!")
             const existResult = await fetchJSON("api/account/exist", {
                 key: "email",
-                value: accountEmail.value
+                value: mailaddress.value
             });
 
+            console.log(existResult);
             if(existResult) {
-                alert("アカウントが存在します");
+                alert("アカウントが存在しています");
             } else {
                 await fetchJSON("api/account/add", {
                     username: text.value,
@@ -34,8 +48,12 @@
                     email: mailaddress.value,
                     comment: "入社します"
                 });
+
+                alert("アカウントが作成されました！");
+                location.href = "/index.html"
             }
         }
+        
         </script>
     </body>
 </html>
