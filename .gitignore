@@ -3,5 +3,5 @@
 .DS_Store
 
 # DataBase File
-.db
-.sqlite3
+*.db
+*.sqlite3
