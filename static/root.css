@@ -175,4 +175,9 @@
     transform: translateY(4px);/*下に動く*/
     border-bottom: none;/*線を消す*/
   }
+  #mapid { height: 500px; width: 500px}
+  #map {
+    height: 500px;
+    width: 500px;
+  }
 
