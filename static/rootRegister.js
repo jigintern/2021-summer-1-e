@@ -1,4 +1,5 @@
-/*function coloeSet(argObj){
+/*
+function coloeSet(argObj){
     if(argObj.value==""){
         argObj.style.backgroundColor = "";
     }else{
@@ -9,6 +10,7 @@
 function colorReset(argObj){
     argObj.style.backgroundColor = "";
 }
+
 function coloeSet(argObj){
     if(argObj.value==""){
         argObj.style.backgroundColor = "";
@@ -27,7 +29,9 @@ function textAreaHeightSet(argObj){
   var wLineH = parseInt(argObj.style.lineHeight.replace(/px/, ''));
   if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
   argObj.style.height = wSclollHeight + "px";
-}*/
+}
+*/
+
 function clickBtn3() {
     const div2 = document.getElementById("div2");
     // 要素の追加

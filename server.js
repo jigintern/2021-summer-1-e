@@ -1,6 +1,10 @@
 import { Server } from "https://js.sabae.cc/Server.js";
 import { AccountRepository } from "./src/AccountRepository.js";
 import { ArticleRepository } from "./src/ArticleRepository.js";
+import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
+
+const datafn = "data.json";
+let data = jsonfs.read(datafn) || [];
 
 class MyServer extends Server {
 	constructor(port) {
@@ -33,7 +37,6 @@ class MyServer extends Server {
 					req['value']
 				);
 				return result;
-
 			case "/api/article/add": //経路の追加
 				return this.articleRepository.add(
 					req['id_user'],
@@ -43,23 +46,26 @@ class MyServer extends Server {
 					req['time'],
 					req['tag']
 				);
-
 			case "/api/article/delete": //経路の削除 T or F
 				return this.articleRepository.delete(
 					req['id_user'],
 					req['name']
 				);
-
 			case "/api/article/find": //USER_IDからの登録した経路の検索
 				return this.articleRepository.findById(
 					req['id_user']
 				);
-
 			case "/api/article/serch_tag": //タグからの検索
 				return this.articleRepository.serchTag(
 					req['serch_tag']
 				);
-
+			case "/api/board/add":
+				data.push(req);
+				jsonfs.write(datafn, data);
+				break;
+			case "/api/board/list":
+				return data;
+				break;
 			default:
 				console.log("予期していないリクエスト", req);
 				break;

@@ -14,6 +14,7 @@ export class ArticleRepository {
 		        time TEXT,
                 tag TEXT,
                 text TEXT,
+                comment TEXT,
                 image TEXT
 		    )
 		`);
@@ -26,7 +27,7 @@ export class ArticleRepository {
     add(id_user, name, location_x, location_y, time, tag, text, image) {
 
         this.getDB().query(
-            "INSERT INTO articles (id_user, name, location_x, location_y, time, text, tag) VALUES ('" +
+            "INSERT INTO articles (id_user, name, location_x, location_y, time, tag, text, comment, image) VALUES ('" +
             id_user + "', '" +
             name + "', '" +
             location_x + "', '" +
@@ -34,6 +35,7 @@ export class ArticleRepository {
             time + "', '" +
             tag + "', '" +
             text + "', '" +
+            comment  + "', '" +
             iamge + "');"
         )
 

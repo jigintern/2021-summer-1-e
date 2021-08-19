@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="css/leaflet-search.min.css">
         <script src="js/leaflet-search.min.js"></script>
         <!-- plugin -->
-        <title>TRIP_LIST_ROOT</title>
+        <title>TRIP_LIST_ROUTE</title>
     </head>
     <body>
         <h1><a id="homepage" href="./index.html">TRIP LIST</a></h1>
@@ -30,7 +30,7 @@
             <div class="formBalloonArrow"></div>
           </div>
         <div class="position1">
-            <h2>地図</h2> 
+            <h2><a href="./rootRegister.html">地図</a></h2> 
             <div id="map"></div>
             <script>
                 var mymap = L.map('map').setView([35.943560, 136.188917], 17);
@@ -40,28 +40,27 @@
                     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
                 }).addTo(mymap);
 
-                var marker = L.marker([35.94354, 136.1884]).addTo(mymap);
-                marker.bindPopup("<p>popup1</p><p>地図表示時に一緒に表示されます。</p>").openPopup();
+                //var marker = L.marker([35.94354, 136.1884]).addTo(mymap);
+                //marker.bindPopup("<p>popup1</p><p>地図表示時に一緒に表示されます。</p>").openPopup();
 
-                var marker2 = L.marker([35.9432, 136.1889]).addTo(mymap);
-                var popup = L.popup();
-                function onMarker2Click(e) {
-                    popup
-                        .setLatLng(e.latlng)
-                        .setContent("<p>popup2</p><p>clickで表示されます。</p>" + e.latlng.toString())
-                        .openOn(mymap);
-                }
-                mymap.on('click', onMarker2Click);
+                //var marker2 = L.marker([35.9432, 136.1889]).addTo(mymap);
+                // var popup = L.popup();
+                // function onMarker2Click(e) {
+                //    popup
+                //        .setLatLng(e.latlng)
+                //        .setContent("<p>popup2</p><p>clickで表示されます。</p>" + e.latlng.toString())
+                //       .openOn(mymap);
+                //}
+                //mymap.on('click', onMarker2Click);
              </script>
         </div>
         <div class="position2">
             <h2>投稿者コメント</h2>
-            メッセージ・・・・・・・・・・・・・・・・・・・・・・・・・・・
-            <p>取得した値 <span id="span1"></span></p>
+            <p>取得した値 </p>
             <br><br><br><br><br><br>
             <a href="">
                 <img src="sample.png" alt="次へ" width="50" height="50">
-                <div href="" class="position3">ユーザー名</div>
+                <div id="profile_name" href="" class="position3">"+ username +"</div>
             </a>
             <br>
             <p>
@@ -82,5 +81,26 @@
             <button class="btn-square" id=btn_write>書き込む</button>
         </div>
         </div>   
+        <script type="module">
+        import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
+        onload = async () => {
+            const query = location.search;
+            const v = query.split('=');
+            const hashKey = v[1];
+            console.log(hashKey);
+
+            const hashKey1 = sessionStorage.getItem('hashKey');
+            console.log(hashKey1);
+
+            const account = await fetchJSON("/api/account/findByHashKey", {
+                hashKey: hashKey
+            });
+
+            const username = account["username"];
+            const comment = account["comment"];
+            document.getElementById("profile_name").innerHTML = username;
+           // document.getElementById("comment").innerHTML = comment;
+        }
+        </script>
     </body>
 </html> 

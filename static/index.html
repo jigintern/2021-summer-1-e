@@ -90,13 +90,13 @@
                     div2.appendChild(span2);
                     const span = create("a");
                     span.textContent = hits[i].title;
-                    span.href = hits[i].url;
+                    span.href = "./root.html"
                     span.style.display = "block";
                     div2.appendChild(span)
                     res.appendChild(div);
                 }
             };
-
+            //hits[i].url; おいといて
             // 初期画面
             inputfilter.onchange();
         };

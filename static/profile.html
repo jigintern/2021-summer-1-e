@@ -16,7 +16,7 @@
         <div id="profile">
             <div id="profile_text">
                 <h2 id="profile_name">高専太郎</h2>
-                <h3>フォロワー: 60人 フォロー: 40人</h3>
+                <h3>フォロワー: 100万人 フォロー: 40人</h3>
                 <h3 id="comment">高専卒の現役エンジニアです。<br />普段は都内をサイクリングしています。<br />
                     休日には、地方に旅行に行きます！！</h3> <!-- デザインを綺麗にする後で -->
             </div>
@@ -25,9 +25,11 @@
     <h1 class="main">公開しているTRIPLIST</h1>
     <div class="tripbox">
         <p>
-        <h2 id="triptitle">超綺麗な夜景を最高に楽しめる計画を立てた</h2>
+        <h2 id="triptitle"><a id="tripurl" href="./root_profile.html">超綺麗な夜景を最高に楽しめる計画を立てた</a>
+        </h2>
         </p>
-        <p><a href=""><img id="triplistimg" src="./profileimg/sample_profile_triplist.jpg" align="left"></a>
+        <p><a href=" ./root_profile.html" target="_blank" rel="noopener"><img id="triplistimg"
+                    src="./profileimg/sample_profile_triplist.jpg" align="left"></a>
             〇〇の夜景がすごい綺麗だと伺ったので、<br>早速向かってみました。<br>夜になるまでに時間が沢山あるので、まずは✕✕というラーメン屋さんに突撃！</p>
         <br clear="left">
     </div>
@@ -51,22 +53,35 @@
         import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
         onload = async () => {
 
-            const query = location.search;
-            const v = query.split('=');
-            const hashKey = v[1];
+            console.log(location.search, location.search.split('='))
+            const hashKey = location.search.split('=')[1];
             console.log(hashKey);
-
-            const hashKey1 = sessionStorage.getItem('hashKey');
-            console.log(hashKey1);
 
             const account = await fetchJSON("/api/account/findByHashKey", {
                 hashKey: hashKey
             });
 
+            let article = (title, description, thumbnailUrl) => {
+                return
+                    '<div class="tripbox">' +
+                    '<p>' +
+                    '<h2 id="triptitle"><a id="tripurl" href="./root_profile.html?send_hash=' + account["username"] + '">' + title + '</a></h2>' +
+                    '</p>' +
+                    '<p><a href="./root_profile.html" target="_blank" rel="noopener"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
+                    description + '</p>' + '<br clear="left"></div>\n';
+            };
+
             const username = account["username"];
             const comment = account["comment"];
             document.getElementById("profile_name").innerHTML = username;
             document.getElementById("comment").innerHTML = comment;
+
+            document.getElementsByClassName("main").innerHTML =
+                article(
+                    "超綺麗な夜景を最高に楽しめる計画を立てた",
+                    "〇〇の夜景がすごい綺麗だと伺ったので、<br>早速向かってみました。<br>夜になるまでに時間が沢山あるので、まずは✕✕というラーメン屋さんに突撃！",
+                    "./profileimg/sample_profile_triplist.jpg"
+                );
 
             const id_user = account["id"];
             const user_data = await fetchJSON("api/article/find", {
@@ -74,14 +89,11 @@
             });
 
             console.log(user_data);
-            
-            data_length = user_data.length;
 
-            for(let i=0; i < data_length; i++){
+            const data_length = user_data.length;
 
+            for (let i = 0; i < data_length; i++) {
             }
-
-
         }
     </script>
 
