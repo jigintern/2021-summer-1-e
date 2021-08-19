@@ -120,18 +120,14 @@
     text-indent: 0;
   }
   .inText {
-    box-sizing    : border-box;
-    margin        : 0;
-    vertical-align: top;
-   
     width         : 100%;                /* 一旦100%幅     */
     max-width     : 250px;               /* 入力域の最大幅 */
     height        : 47px;                /* 入力域の高さ   */
     background    : #ffffff;             /* 入力域の背景色 */
     border        : 2px solid #00007f;   /* 入力域の枠線   */
     border-radius : 4px;                 /* 入力域の角丸   */
-    padding       : 0 10px;              /* 入力文字の余白 */
-    font-size     : 20px;                /* 入力文字サイズ */
+    padding       : 0 15px;              /* 入力文字の余白 */
+    font-size     : 15px;                /* 入力文字サイズ */
     color         : #333333;             /* 入力文字の色   */
     font-weight   : bold;                /* 入力文字の太字 */
     letter-spacing: .1em;                /* 入力文字の間隔 */
@@ -143,56 +139,25 @@
     box-shadow    : 4px 4px 2px #999;        /* 影付け     */
     outline       : 0;
   }
-   /* --- 入力説明の文字(標準) -----------------------------*/
-  .inText:placeholder-shown {
-    color         : #808080;                 /* 文字色     */
-    font-size     : 15px                    /* 少し小さく */
-  }
-   /* --- 入力説明の文字(Chrome,Safari,Android,iOS等) ---- -*/
-  .inText::-webkit-input-placeholder {
-    color         : #808080;                 /* 文字色     */
-    font-size     : 15px                    /* 少し小さく */
-  }
-   /* --- 入力説明の文字(IE用) -----------------------------*/
-  .inText:-ms-input-placeholder {
-    color         : #808080;                 /* 文字色     */
-    font-size     : 15px;                    /* 少し小さく */
-  }
-   /* --- IEの入力エリア右側×消し -------------------------*/
-  .inText::-ms-clear {
-    display     : none;                      /* ×を消す   */
-  }
+
 
   .textArea {
-    width         : 700px;               /* 入力域の最大幅 */
-    height        : 300px;
+    width         : 600px;                /* 一旦100%幅     */
+    height        : 300px;                /* 入力域の高さ   */
     background    : #ffffff;             /* 入力域の背景色 */
     border        : 2px solid #00007f;   /* 入力域の枠線   */
     border-radius : 4px;                 /* 入力域の角丸   */
-    padding       : 7px;                /* 入力文字の余白 */
+    padding       : 0 15px;              /* 入力文字の余白 */
     font-size     : 15px;                /* 入力文字サイズ */
     color         : #333333;             /* 入力文字の色   */
     font-weight   : bold;                /* 入力文字の太字 */
     letter-spacing: .1em;                /* 入力文字の間隔 */
-    line-height   : 1px;                /* 入力文字の間隔 */
   }
    /* --- 入力フィールドにフォーカスか来たら ----------------*/
   .textArea:focus {
     border-color  : #007fff;                 /* 枠線色     */
     background    : rgba(0, 127, 255, 0.20);  /* 背景色     */
     outline       : 0;
-  }
-   /* --- 入力説明の文字(標準) -----------------------------*/
-  .textArea:placeholder-shown {
-    color         : #808080;                 /* 文字色     */
-  }
-   /* --- 入力説明の文字(Chrome,Safari,Android,iOS等) ---- -*/
-  .textArea::-webkit-input-placeholder {
-    color         : #808080;                 /* 文字色     */
-  }
-   /* --- 入力説明の文字(IE用) -----------------------------*/
-  .textArea:-ms-input-placeholder {
-    color         : #808080;                 /* 文字色     */
   }
   
   .btn-square {
