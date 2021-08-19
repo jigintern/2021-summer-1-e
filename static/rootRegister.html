@@ -37,15 +37,27 @@
         <div id="map"></div>
         <script type="module">
 
+            const location = []; //座標の格納配列
+            
 
-            const location = [];
+            const first_id = make_random_string();
+            const text_ids = []; //text id の識別子
+
             const button = document.getElementById('btn_write');
+
             function submit_data(){
                 const a = document.getElementById("0").getElementsByClassName("text_val");
                 console.log(a.item(0).value);
             }
 
             button.onclick = submit_data;
+
+            window.onload = function(){
+                const p1 = document.getElementById("0");
+                p1.style.display ="none";
+                p1.id = first_id;
+                text_ids.push(first_id);
+            };
 
 
             // We’ll add a tile layer to add to our map, in this case it’s a OSM tile layer.
@@ -57,11 +69,22 @@
                     attribution: osmAttrib
                 });
 
+            function make_random_string(){
+                const l = 50;
+                const c = "abcdefghijklmnopqrstuvwxyz0123456789";
+                const cl = c.length;
+                let r = "";
+                for(let i=0; i<l; i++){
+                    r += c[Math.floor(Math.random()*cl)];
+                }
+                return r;
+            }
+
             // initialize the map on the "map" div with a given center and zoom
             var map = L.map('map').setView([35.943560, 136.188917], 17).addLayer(osm);
             //const btn_clone = $('#btn-clone');
             const btn_remove = $('#btn-remove');  // 削除ボタン
-            let i = 1;
+            let i = 0;
             // Script for adding marker on map click
             function onMapClick(e) {
 
@@ -80,23 +103,67 @@
 
                 const location_data = [e.latlng.lat, e.latlng.lng];
                 location.push(location_data);
-
                 console.log(location);
-                //ボックス追加の処理
-                var text = $('.text').last();  // 最後尾にあるinput
-                text
-                    .clone()  // クローン
-                    .val('')  // valueもクローンされるので削除する
-                    .insertAfter(text)
-                    .attr('id',i);
-                
-                i++
 
-                if ($('.text').length >= 2) {
-                    $(btn_remove).show();  // inputが2つ以上あるときに削除ボタンを表示
+                
+
+                if(i != 0){
+
+                    let r = make_random_string();
+
+                    while(true){ //ランダムな識別子の生成
+                        const none_id = text_ids.indexOf(r);
+                        if(none_id == -1){
+                            break;
+                        }
+                        r = make_random_string();
+                    }                    
+
+                    text_ids.push()
+
+                    //ボックス追加の処理
+                    var text = $('.text').last();  // 最後尾にあるinput
+                    text
+                        .clone()  // クローン
+                        .val("")  // valueもクローンされるので削除する
+                        .insertAfter(text)
+                        .attr('id',r);
+                    const a = document.getElementById(r).getElementsByClassName("text_val");
+                    a.item(0).value = "";
+                    a.item(1).value = "";
+                    i++;
+
+                    console.log(i==text_ids.length);
+
+                    if ($('.text').length >= 2) {
+                        $(btn_remove).show();  // inputが2つ以上あるときに削除ボタンを表示
+                    }
+
+                    text_ids.push(r);
+
+                }else if(i == 0){
+                    console.log(text_ids[0]);
+                    const p1 = document.getElementById(text_ids[0]);
+                    p1.style.display ="block";
+                    //text_ids.push(first_id);
+                    const a = p1.getElementsByClassName("text_val");
+                    a.item(0).value = "";
+                    a.item(1).value = "";
+
+                    i++;
+                }else{
+                    //何もしない
                 }
+
+                
+
+                console.log(i);
+                console.log(text_ids);
+                
             }
+
             map.on('click', onMapClick);
+
             function onMarkerClick(e) {
 
                 const delete_data = [e.latlng.lat, e.latlng.lng];
@@ -115,18 +182,41 @@
                 location.splice(is_index, 1);
                 console.log(location);
 
-                
+                const select_text_id = text_ids[is_index];
 
                 //マーカーのclickイベント呼び出される
                 //クリックされたマーカーを地図のレイヤから削除する
                 map.removeLayer(e.target);
                 //ボックス削除の処理
-                $('.text')
-                    .last()
-                    .remove();
-                if ($('.text').length < 2) {
-                    btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
+
+                if(i != 1){
+
+                    const delete_targe = "#" + select_text_id;
+                    console.log(delete_targe);
+
+                    $('.text')
+                        $(delete_targe).remove();
+
+                    if ($('.text').length < 2) {
+                        btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
+                    }
+
+                    text_ids.splice(is_index, 1);
+
+                    i--;
+
+                }else if(i == 1){
+
+                    const p1 = document.getElementById(text_ids[0]);
+                    p1.style.display ="none";
+                    i--;
+                    
+
                 }
+
+                console.log(i);
+                console.log(text_ids);
+
             }
 
             
