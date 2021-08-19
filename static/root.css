@@ -1,0 +1,178 @@
+  * {
+    outline: 0;
+    font-family: sans-serif
+  }
+  body {
+    background-color: #F0D1FF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Crect stroke='%23F0D1FF' stroke-width='0.3' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cuse fill='%23eecffc' href='%23s' y='2'/%3E%3Cuse fill='%23eecffc' href='%23s' x='1' y='2'/%3E%3Cuse fill='%23ebcdfa' href='%23s' x='2' y='2'/%3E%3Cuse fill='%23ebcdfa' href='%23s'/%3E%3Cuse fill='%23e9cbf7' href='%23s' x='2'/%3E%3Cuse fill='%23e9cbf7' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%23e6c8f5'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5' /%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='5' y='2'/%3E%3Cuse href='%23s' x='5' y='6'/%3E%3Cuse href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%23e6c8f5'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%23e4c6f2'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%23F0D1FF'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%23e1c4ef'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%2316FFFC'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%2316FFFC'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='rotate(84 1000 750) scale(15.2) translate(-934.21 -700.66)'%3E%3Cg fill='%2316FFFC'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .position1{
+    position: absolute;
+    top: 0px;
+    left: 600px;
+  }
+  .position2{
+    position: relative;
+    top: 500px;
+  }
+  .position3{
+    position: relative;
+    left: 60px;
+    bottom: 40px;
+  }
+  .button1 {
+    display       : inline-block;
+    font-size     : 16pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 5px 87px;   /* 余白       */
+    background    : #003300;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid #003300;    /* 枠の指定 */
+  }
+  .button1:hover {
+    background-color: #299b42;
+  }
+  .hidden {
+    background: #299b42;
+    width: 255px;
+  }
+
+  .good {
+    font-family: "Font Awesome 5 Free";
+    content: "\f164";
+    color: gray;
+    margin-right: 5px
+  }
+  .balloon-left {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0 1.5em 2px;
+    padding: 0 5px;
+    width: 50px;
+    height: 50px;
+    line-height: 55px;
+    text-align: center;
+    color: #FFF;
+    font-size: 22px;
+    font-weight: bold;
+    background: #e2930a;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  
+  .balloon-left:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    margin-top: -12px;
+    border: 10px solid transparent;
+    border-right: 10px solid #e2930a;
+    z-index: 0;
+  }
+  h2 {
+    position: relative;
+    color: #0e065c;
+    padding: 1rem 2rem;
+    border-bottom: 6px solid rgb(49, 59, 199);
+    width: 200px;
+  }
+  
+  h2:before {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 20%;
+    height: 6px;
+    content: '';
+    background: #2587b4;
+  }
+  .formBalloon {
+    padding-bottom: 13px;
+    display: block;
+    left: 100px;
+  }
+  .formBalloon .formBalloonContent {
+    border-radius: 3px 3px 0px 0px;
+    width: 20px;
+    height: 50px;
+    position: relative;
+    background: #107710;
+    left: 20px;
+  }
+  .formBalloon .formBalloonArrow{
+    border: 30px solid transparent;
+    border-top: 30px solid #107710;
+    position: absolute;
+    height: 0;
+    width: 0;
+    z-index: 1;
+  }
+  .balloonMsg {
+    padding-bottom: 1px;
+    display: block;
+    line-height: 1.4;
+    text-indent: 0;
+  }
+  .inText {
+    width         : 100%;                /* 一旦100%幅     */
+    max-width     : 250px;               /* 入力域の最大幅 */
+    height        : 47px;                /* 入力域の高さ   */
+    background    : #ffffff;             /* 入力域の背景色 */
+    border        : 2px solid #00007f;   /* 入力域の枠線   */
+    border-radius : 4px;                 /* 入力域の角丸   */
+    padding       : 0 15px;              /* 入力文字の余白 */
+    font-size     : 15px;                /* 入力文字サイズ */
+    color         : #333333;             /* 入力文字の色   */
+    font-weight   : bold;                /* 入力文字の太字 */
+    letter-spacing: .1em;                /* 入力文字の間隔 */
+  }
+   /* --- 入力フィールドにフォーカスか来たら ----------------*/
+  .inText:focus {
+    border-color  : #007fff;                 /* 枠線色     */
+    background    : rgba(0, 127, 255, 0.20);  /* 背景色     */
+    box-shadow    : 4px 4px 2px #999;        /* 影付け     */
+    outline       : 0;
+  }
+
+
+  .textArea {
+    width         : 600px;                /* 一旦100%幅     */
+    height        : 300px;                /* 入力域の高さ   */
+    background    : #ffffff;             /* 入力域の背景色 */
+    border        : 2px solid #00007f;   /* 入力域の枠線   */
+    border-radius : 4px;                 /* 入力域の角丸   */
+    padding       : 0 15px;              /* 入力文字の余白 */
+    font-size     : 15px;                /* 入力文字サイズ */
+    color         : #333333;             /* 入力文字の色   */
+    font-weight   : bold;                /* 入力文字の太字 */
+    letter-spacing: .1em;                /* 入力文字の間隔 */
+  }
+   /* --- 入力フィールドにフォーカスか来たら ----------------*/
+  .textArea:focus {
+    border-color  : #007fff;                 /* 枠線色     */
+    background    : rgba(0, 127, 255, 0.20);  /* 背景色     */
+    outline       : 0;
+  }
+  
+  .btn-square {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+  }
+  .btn-square:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+  }
+
