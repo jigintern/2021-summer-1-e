@@ -62,6 +62,7 @@ class MyServer extends Server {
 			case "/api/board/add":
 				data.push(req);
 				jsonfs.write(datafn, data);
+				return "ok";
 				break;
 			case "/api/board/list":
 				return data;
