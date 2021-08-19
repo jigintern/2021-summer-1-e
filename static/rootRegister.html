@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="apple-touch-icon" href="map-ogp.png"/>
+        <meta property="og:image" content="map-ogp.png"/>
+        <link rel="stylesheet" href="rootRegister.css" type="text/css">
+        <script type="text/javascript" src="rootRegister.js"></script>
+        <link rel='stylesheet' href='https://code4sabae.github.io/leaflet-mjs/leaflet.css'/>
+        <title>ル－ト登録</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type='module'>
+
+            import L from 'https://code4sabae.github.io/leaflet-mjs/leaflet.mjs'
+            
+            window.onload = async function() {
+              const data = [
+                { lat: 35.943560, lng: 136.188917, name: '鯖江駅' },
+                { lat: 35.944539, lng: 136.186222, name: 'Hana道場' },
+                { lat: 35.942795, lng: 136.198881, name: 'めがね会館' },
+                { lat: 35.949658, lng: 136.258142, name: 'JAPAN CRAFT HOUSE' },
+              ]
+            
+              const map = L.map('mapid')
+              // set 国土地理院地図 https://maps.gsi.go.jp/development/ichiran.html
+              L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", {
+                    attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>"',
+                    maxZoom: 18,
+              }).addTo(map)
+            
+              let iconlayer = L.layerGroup()
+              iconlayer.addTo(map)
+              const lls = []
+              for (const item of data) {
+                const ll = [ item.lat, item.lng ]
+                const marker = L.marker(ll, { title: item.name })
+                marker.bindPopup(item.name)
+                iconlayer.addLayer(marker)
+                lls.push(ll)
+              }
+              if (lls.length)
+                map.fitBounds(lls)
+            }
+            
+    </script>
+    </head>
+    <body>
+        <h2>ルート</h2>
+        <script>
+              $(function() {
+                // button
+                const btn_clone = $('#btn-clone');  // 追加ボタン
+                const btn_remove = $('#btn-remove');  // 削除ボタン
+                // clone
+                btn_clone.click(function() {
+                var text = $('.text').last();  // 最後尾にあるinput
+                    text
+                    .clone()  // クローン
+                    .val('')  // valueもクローンされるので削除する
+                    .insertAfter(text);
+                var text2 = $('.text').last();
+                    text2
+                    .clone()  // クローン
+                    .val('')  // valueもクローンされるので削除する
+                    .insertAfter(text2);
+                if ($('.text').length >= 2) {
+                    $(btn_remove).show();  // inputが2つ以上あるときに削除ボタンを表示
+                }
+                });
+                // remove
+                btn_remove.click(function() {
+                $('.text')
+                    .last()
+                    .remove();
+                $('.text')
+                    .last()
+                    .remove();
+                
+
+                if ($('.text').length < 2) {
+                    btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
+                }
+                });
+                });
+        </script>  
+        <form class="text">
+            <input type="text" name="text"  placeholder="場所名"></input>
+            <textArea name="text"  placeholder="詳細" style="height: 100px;"></textArea>
+            <br>   
+        </form>
+        <button type="button" id="btn-clone">追加</button>
+        <button type="button" id="btn-remove">削除</button>
+        <div class="position1">
+            <h2>地図</h2> 
+            <div id="mapid"></div>
+        </div>
+        <div class="position2">
+            <h2>投稿者コメント</h2>
+            <textarea class="textArea" id=inp_body placeholder="コメント"></textarea><br>
+            <button class="btn-square" id=btn_write>送信</button> 
+        </div>
+    </body>
+</html> 
