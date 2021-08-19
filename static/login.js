@@ -24,17 +24,27 @@ let submit = document.getElementById('submit');
 submit.onclick = async () => {
   console.log("click!!")
   const existResult = await fetchJSON("api/account/exist", {
-    key: text.value,
-    value: password.value
+    key: "username",
+    value: text.value
   });
 
   if(existResult){
-    location.href = "./profile.html"
+    const existResult = await fetchJSON("api/account/exist", {
+      key: "password",
+      value: password.value
+    });
+    
+    if(existResult){
+      alert("ログインが完了しました。");
+      location.href = "/index.html"
+    }
+    if(!existResult){
+      location.reload();
+      alert("ユーザーネームかパスワードが間違っています。");
+    }
   }
-
   if(!existResult){
     location.reload();
-    alert("アカウントが存在しない");
-  }  
+    alert("ユーザーネームかパスワードが間違っています。");
+  }
 }
-
