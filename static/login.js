@@ -22,29 +22,19 @@ async function getAccount(key, password) {
 let submit = document.getElementById('submit');
 
 submit.onclick = async () => {
-  console.log("click!!")
-  const existResult = await fetchJSON("api/account/exist", {
-    key: "username",
-    value: text.value
+  console.log("click!!");
+  const account = await fetchJSON("api/account/find", {
+    key: text.value,
+    password: password.value
   });
 
-  if(existResult){
-    const existResult = await fetchJSON("api/account/exist", {
-      key: "password",
-      value: password.value
-    });
-    
-    if(existResult){
-      alert("ログインが完了しました。");
-      location.href = "/index.html"
-    }
-    if(!existResult){
-      location.reload();
-      alert("ユーザーネームかパスワードが間違っています。");
-    }
-  }
-  if(!existResult){
+  if(account === null) {
     location.reload();
     alert("ユーザーネームかパスワードが間違っています。");
+  } else {
+    alert("ログインが完了しました。");
+    sessionStorage.setItem("hashKey", account['hashKey']);
+    console.log(sessionStorage.getItem("hashKey"));
+    location.href = "/index.html"
   }
 }

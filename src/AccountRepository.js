@@ -1,6 +1,6 @@
-import {DB} from "https://deno.land/x/sqlite/mod.ts";
-import {Account} from "./Account.js";
-import {HashUseCase} from "./HashUseCase.js";
+import { DB } from "https://deno.land/x/sqlite/mod.ts";
+import { Account } from "./Account.js";
+import { HashUseCase } from "./HashUseCase.js";
 
 export class AccountRepository {
 	constructor() {
@@ -16,11 +16,11 @@ export class AccountRepository {
 		    )
 		`);
 	}
-	
+
 	getDB() {
 		return this.db;
 	}
-	
+
 	async add(username, password, email, comment) {
 		const hashKey = await HashUseCase.getHash();
 
@@ -48,11 +48,9 @@ export class AccountRepository {
 	findAccountBy(dataKey, dataValue, password) {
 		const data = this.findBy(dataKey, dataValue)[0];
 
-		if(Array.isArray(data)) {
-			if(data[2] !== undefined) {
-				if(data[2] === password) {
-					return new Account(data);
-				}
+		if (Array.isArray(data)) {
+			if (data[2] === password) {
+				return new Account(data);
 			}
 		}
 
@@ -65,6 +63,10 @@ export class AccountRepository {
 
 	findByEmail(email, password) {
 		return this.findAccountBy("email", email, password);
+	}
+
+	findByHashKey(hashKey) {
+		return new Account(this.getDB().query("SELECT * FROM accounts WHERE hashKey = '" + hashKey + "';")[0]);
 	}
 
 	exists(key, value) {

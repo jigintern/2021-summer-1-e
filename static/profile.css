@@ -29,14 +29,14 @@ div[id="profile"]{
     border-radius:30px;
     width: 50%;
     background-color: rgba(200, 255, 255, 0.993);
-    
+
     position:relative;
     left:500px;
     top:-300px;
 }
 div[id="profilemain"]{
     background: #e1f3ff;
-    background-image: 
+    background-image:
       radial-gradient(#c8e4ff 30%, transparent 0),
       radial-gradient(#c8e4ff 30%, transparent 0);
     background-size: 30px 30px;
@@ -47,7 +47,7 @@ div[id="profile_text"]{
     text-align: center;
 
 }
-h2[id="username"]{
+h2[id="profile_name"]{
     font-size: 50px;
 }
 h3{
@@ -64,7 +64,7 @@ h3{
     border-bottom: solid 5px #5989cf;
 }
 .tripbox p {
-    margin: 0; 
+    margin: 0;
     padding: 0;
     font-size: 40px;
 }
