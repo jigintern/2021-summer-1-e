@@ -1,4 +1,4 @@
-function coloeSet(argObj){
+/*function coloeSet(argObj){
     if(argObj.value==""){
         argObj.style.backgroundColor = "";
     }else{
@@ -27,4 +27,26 @@ function textAreaHeightSet(argObj){
   var wLineH = parseInt(argObj.style.lineHeight.replace(/px/, ''));
   if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
   argObj.style.height = wSclollHeight + "px";
-}
+}*/
+function clickBtn3() {
+    const div2 = document.getElementById("div2");
+    // 要素の追加
+    if (!div2.hasChildNodes()) {
+      const input1 = document.createElement("input");
+      const input2 = document.createElement("input");
+      input1.setAttribute("type", "text");
+      input1.setAttribute("maxlength", "5");
+      input1.setAttribute("size", "10");
+      input2.setAttribute("type", "text");
+      input2.setAttribute("maxlength", "30");
+      input2.setAttribute("size", "10");
+      div2.appendChild(input1);
+      div2.appendChild(input2);
+    }
+  }
+  function clickBtn4() {
+    const div2 = document.getElementById("div2");
+    if (div2.hasChildNodes()) {
+      div2.removeChild(div2.firstChild);
+    }
+  }
