@@ -44,7 +44,10 @@ class MyServer extends Server {
 					req['location_x'],
 					req['location_y'],
 					req['time'],
-					req['tag']
+					req['tag'],
+					req['text'],
+					req['comments'],
+					req['image']
 				);
 			case "/api/article/delete": //経路の削除 T or F
 				return this.articleRepository.delete(
