@@ -30,39 +30,25 @@
             <h2>地図</h2> 
             <div id="map"></div>
             <script>
-	 	// We’ll add a tile layer to add to our map, in this case it’s a OSM tile layer.
-	 	// Creating a tile layer usually involves setting the URL template for the tile images
-	 	var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-	 	    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	 	    osm = L.tileLayer(osmUrl, {
-	 	        maxZoom: 18,
-	 	        attribution: osmAttrib
-	 	    });
+                var mymap = L.map('map').setView([35.943560, 136.188917], 17);
+                
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
+                }).addTo(mymap);
 
-	 	// initialize the map on the "map" div with a given center and zoom
-	 	var map = L.map('map').setView([35.943560, 136.188917], 12).addLayer(osm);
+                var marker = L.marker([35.94354, 136.1884]).addTo(mymap);
+                marker.bindPopup("<p>popup1</p><p>地図表示時に一緒に表示されます。</p>").openPopup();
 
-	 	// Script for adding marker on map click
-	 	function onMapClick(e) {
-
-	 	    var marker = L.marker(e.latlng, {
-	 	        draggable: true,
-	 	        title: "Resource location",
-	 	        alt: "Resource Location",
-	 	        riseOnHover: true
-	 	    }).addTo(map)
-	 	        .bindPopup(e.latlng.toString()).openPopup();
-
-	 	    // Update marker on changing it's position
-	 	    marker.on("dragend", function (ev) {
-
-	 	        var chagedPos = ev.target.getLatLng();
-	 	        this.bindPopup(chagedPos.toString()).openPopup();
-
-	 	    });
-	 	}
-
-	 	map.on('click', onMapClick);
+                var marker2 = L.marker([35.9432, 136.1889]).addTo(mymap);
+                var popup = L.popup();
+                function onMarker2Click(e) {
+                    popup
+                        .setLatLng(e.latlng)
+                        .setContent("<p>popup2</p><p>clickで表示されます。</p>" + e.latlng.toString())
+                        .openOn(mymap);
+                }
+                mymap.on('click', onMarker2Click);
              </script>
         </div>
         <div class="position2">
