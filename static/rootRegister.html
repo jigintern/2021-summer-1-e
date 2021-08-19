@@ -25,9 +25,9 @@
 <body>
     <h2>ルート</h2>
     
-    <form class="text">
-        <input type="text" name="text" placeholder="場所名"></input>
-        <textArea name="text" placeholder="詳細" style="height: 100px;"></textArea>
+    <form class="text" id="0">
+        <input type="text" class="text_val" name="text" id = "test_1" placeholder="場所名"></input>
+        <textArea name="text" class="text_val" placeholder="詳細" id="test_2" style="height: 100px;"></textArea>
         <br>
     </form>
     <button type="button" id="btn-clone">追加</button>
@@ -37,7 +37,15 @@
         <div id="map"></div>
         <script type="module">
 
+
             const location = [];
+            const button = document.getElementById('btn_write');
+            function submit_data(){
+                const a = document.getElementById("0").getElementsByClassName("text_val");
+                console.log(a.item(0).value);
+            }
+
+            button.onclick = submit_data;
 
 
             // We’ll add a tile layer to add to our map, in this case it’s a OSM tile layer.
@@ -53,7 +61,7 @@
             var map = L.map('map').setView([35.943560, 136.188917], 17).addLayer(osm);
             //const btn_clone = $('#btn-clone');
             const btn_remove = $('#btn-remove');  // 削除ボタン
-            let i = 0;
+            let i = 1;
             // Script for adding marker on map click
             function onMapClick(e) {
 
@@ -107,6 +115,8 @@
                 location.splice(is_index, 1);
                 console.log(location);
 
+                
+
                 //マーカーのclickイベント呼び出される
                 //クリックされたマーカーを地図のレイヤから削除する
                 map.removeLayer(e.target);
@@ -119,14 +129,10 @@
                 }
             }
 
-            const button = document.getElementById('btn_write');
+            
 
 
-            function submit_data(){
-                
-            }
-
-            button.onclick = submit_data;
+            
 
         </script>
     </div>
