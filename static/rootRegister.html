@@ -7,43 +7,14 @@
         <meta property="og:image" content="map-ogp.png"/>
         <link rel="stylesheet" href="rootRegister.css" type="text/css">
         <script type="text/javascript" src="rootRegister.js"></script>
+        <script type="text/javascript" src="rootTransition.js"></script>
         <link rel='stylesheet' href='https://code4sabae.github.io/leaflet-mjs/leaflet.css'/>
         <title>ル－ト登録</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type='module'>
-
-            import L from 'https://code4sabae.github.io/leaflet-mjs/leaflet.mjs'
-            
-            window.onload = async function() {
-              const data = [
-                { lat: 35.943560, lng: 136.188917, name: '鯖江駅' },
-                { lat: 35.944539, lng: 136.186222, name: 'Hana道場' },
-                { lat: 35.942795, lng: 136.198881, name: 'めがね会館' },
-                { lat: 35.949658, lng: 136.258142, name: 'JAPAN CRAFT HOUSE' },
-              ]
-            
-              const map = L.map('mapid')
-              // set 国土地理院地図 https://maps.gsi.go.jp/development/ichiran.html
-              L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", {
-                    attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>"',
-                    maxZoom: 18,
-              }).addTo(map)
-            
-              let iconlayer = L.layerGroup()
-              iconlayer.addTo(map)
-              const lls = []
-              for (const item of data) {
-                const ll = [ item.lat, item.lng ]
-                const marker = L.marker(ll, { title: item.name })
-                marker.bindPopup(item.name)
-                iconlayer.addLayer(marker)
-                lls.push(ll)
-              }
-              if (lls.length)
-                map.fitBounds(lls)
-            }
-            
-    </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">
+        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <h2>ルート</h2>
@@ -59,11 +30,6 @@
                     .clone()  // クローン
                     .val('')  // valueもクローンされるので削除する
                     .insertAfter(text);
-                var text2 = $('.text').last();
-                    text2
-                    .clone()  // クローン
-                    .val('')  // valueもクローンされるので削除する
-                    .insertAfter(text2);
                 if ($('.text').length >= 2) {
                     $(btn_remove).show();  // inputが2つ以上あるときに削除ボタンを表示
                 }
@@ -73,11 +39,6 @@
                 $('.text')
                     .last()
                     .remove();
-                $('.text')
-                    .last()
-                    .remove();
-                
-
                 if ($('.text').length < 2) {
                     btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
                 }
@@ -93,12 +54,42 @@
         <button type="button" id="btn-remove">削除</button>
         <div class="position1">
             <h2>地図</h2> 
-            <div id="mapid"></div>
+            <div id="map"></div>
+            <script>
+                // We’ll add a tile layer to add to our map, in this case it’s a OSM tile layer.
+                // Creating a tile layer usually involves setting the URL template for the tile images
+                var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+                    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    osm = L.tileLayer(osmUrl, {
+                        maxZoom: 18,
+                        attribution: osmAttrib
+                    });
+
+                // initialize the map on the "map" div with a given center and zoom
+                var map = L.map('map').setView([35.943560, 136.188917], 17).addLayer(osm);
+                // Script for adding marker on map click
+                function onMapClick(e) {
+
+                    var marker = L.marker(e.latlng, {
+                        draggable: true,
+                        title: "Resource location",
+                        alt: "Resource Location",
+                        riseOnHover: true
+                    }).addTo(map)
+                        .bindPopup(e.latlng.toString()).openPopup();
+                    // Update marker on changing it's position
+                    marker.on("dragend", function (ev) {
+                        var chagedPos = ev.target.getLatLng();
+                        this.bindPopup(chagedPos.toString()).openPopup();
+                    });
+                }
+                map.on('click', onMapClick);
+             </script>
         </div>
         <div class="position2">
             <h2>投稿者コメント</h2>
             <textarea class="textArea" id=inp_body placeholder="コメント"></textarea><br>
-            <button class="btn-square" id=btn_write>送信</button> 
+            <button class="button2" id=btn_write onclick="clickBtn2()">登録</button> 
         </div>
     </body>
 </html> 

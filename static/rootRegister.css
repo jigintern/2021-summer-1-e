@@ -39,6 +39,25 @@
   .button1:hover {
     background-color: #299b42;
   }
+
+  .button2 {
+    position: relative;
+    display: block;
+    width: 160px;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 18pt;
+    background: #da3b26;
+    border-bottom: 2px solid #00838F;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  }
+  .button2{
+    border-bottom: 2px solid #dac826;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+  }
   .hidden {
     background: #299b42;
     width: 255px;
@@ -216,4 +235,7 @@
   input, button {
     display: block;
   }
-  
+  #map {
+    height: 500px;
+    width: 500px;
+  }

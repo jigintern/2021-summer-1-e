@@ -18,8 +18,18 @@
         <script type="module">
         
         import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+        window.onload = () => {
+            // form = document.getElementById('submit');
+            // form.addEventListener('click', buttonClick);
+        }
+        // document.getElementById('submit');
 
-        let submit = document.getElementById('submit');
+        // submit.onclick = async () =>{
+        //     alert("1アカウントが作成されました！");
+        // }
+        
+
+        let submit = document.getElementById('submit')
         
         submit.onclick = async () => {
             console.log("click!!")
@@ -27,8 +37,7 @@
                 key: "email",
                 value: mailaddress.value
             });
-
-            console.log(existResult);
+            
             if(existResult) {
                 alert("アカウントが存在しています");
             } else {
