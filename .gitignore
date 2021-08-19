@@ -1,2 +1,7 @@
 # idea64 file
 .idea
+.DS_Store
+
+# DataBase File
+*.db
+*.sqlite3
