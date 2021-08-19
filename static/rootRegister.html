@@ -37,6 +37,8 @@
         <div id="map"></div>
         <script type="module">
 
+            import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+
             const location = []; //座標の格納配列
             
 
@@ -45,9 +47,17 @@
 
             const button = document.getElementById('btn_write');
 
-            function submit_data(){
-                const a = document.getElementById("0").getElementsByClassName("text_val");
-                console.log(a.item(0).value);
+            async function submit_data(){                
+                const existResult = await fetchJSON("api/article/add", {
+                    id_user: "1234",
+                    name: "kouno",
+                    location_x: "45, 46",
+                    location_y: "64, 10",
+                    time: "10:10",
+                    tag: "Fuji"
+                });
+                
+                console.log(existResult);
             }
 
             button.onclick = submit_data;
