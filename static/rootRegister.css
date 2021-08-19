@@ -43,12 +43,11 @@
     position: relative;
     display: block;
     width: 160px;
-    height: 40px;
     padding: 0.8em;
     text-align: center;
     text-decoration: none;
     color: #FFF;
-    font-size: 11pt;
+    font-size: 18pt;
     background: #da3b26;
     border-bottom: 2px solid #00838F;
     border-radius: 4px;
