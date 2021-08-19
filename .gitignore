@@ -5,3 +5,6 @@
 # DataBase File
 *.db
 *.sqlite3
+
+# node module
+node_modules/*
