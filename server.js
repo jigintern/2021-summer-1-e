@@ -11,19 +11,19 @@ class MyServer extends Server {
 
 	async api(path, req) {
 		switch(path) {
-			case "/api/account/add":
+			case "/api/account/add": //アカウント追加
 				return this.accountRepository.add(
 					req['username'],
 					req['password'],
 					req['email'],
 					req['comment']
 				);
-			case "/api/account/find":
+			case "/api/account/find": //アカウントを探す
 				return this.accountRepository.find(
 					req['key'],
 					req['password']
 				);
-			case "/api/account/exist":
+			case "/api/account/exist": //メールアドレスがあるかどうかTorF
 				const result = this.accountRepository.exists(
 					req['key'],
 					req['value']

@@ -19,17 +19,22 @@ async function getAccount(key, password) {
   return result;
 }
 
-
-
-
-
 let submit = document.getElementById('submit');
-        
-        
-        submit.onclick = async () => {
-            console.log("click!!")
-            const existResult = await fetchJSON("api/account/exist", {
-                key: key,
-                password: password
-            });
-          }
+
+submit.onclick = async () => {
+  console.log("click!!")
+  const existResult = await fetchJSON("api/account/exist", {
+    key: text.value,
+    value: password.value
+  });
+
+  if(existResult){
+    location.href = "./profile.html"
+  }
+
+  if(!existResult){
+    location.reload();
+    alert("アカウントが存在しない");
+  }  
+}
+

@@ -1,5 +1,6 @@
 import {DB} from "https://deno.land/x/sqlite/mod.ts";
 import {Account} from "./Account.js";
+// import {getUuid} from "./UuidGenerator.js";
 
 export class AccountRepository {
 	constructor() {
@@ -10,7 +11,8 @@ export class AccountRepository {
 		        username TEXT,
 				password TEXT,
 		        email TEXT,
-		        comment TEXT
+		        comment TEXT,
+				hashKey TEXT
 		    )
 		`);
 	}
@@ -20,13 +22,18 @@ export class AccountRepository {
 	}
 	
 	add(username, password, email, comment) {
-		this.getDB().query(
-            "INSERT INTO accounts (username, password, email, comment) VALUES ('" +
-            username + "', '" +
-            password + "', '" +
-            email + "', '" +
-            comment + "');"
-        )
+		const queryResult = async () => {
+			const hashKey = await crypto.subtle.digest('SHA-256', "");
+
+			this.getDB().query(
+				"INSERT INTO accounts (username, password, email, comment, hashKey) VALUES ('" +
+				username + "', '" +
+				password + "', '" +
+				email + "', '" +
+				comment + "', '" +
+				hashKey + "');"
+			)
+		}
 
 		return "アカウントが追加されました \"" + username + "\"";
 	}
