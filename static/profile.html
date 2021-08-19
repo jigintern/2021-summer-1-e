@@ -16,9 +16,9 @@
         <div id="profile">
             <div id="profile_text">
                 <h2 id="profile_name">高専太郎</h2>
-                <h3>フォロワー: 1人 フォロー: 99999人</h3>
+                <h3>フォロワー: 60人 フォロー: 40人</h3>
                 <h3 id="comment">高専卒の現役エンジニアです。<br />普段は都内をサイクリングしています。<br />
-                    休日には、地方に旅行に行きます！！</h3>      <!-- デザインを綺麗にする後で -->
+                    休日には、地方に旅行に行きます！！</h3> <!-- デザインを綺麗にする後で -->
             </div>
         </div>
     </div>
@@ -56,6 +56,9 @@
             const hashKey = v[1];
             console.log(hashKey);
 
+            const hashKey1 = sessionStorage.getItem('hashKey');
+            console.log(hashKey1);
+
             const account = await fetchJSON("/api/account/findByHashKey", {
                 hashKey: hashKey
             });
@@ -64,6 +67,20 @@
             const comment = account["comment"];
             document.getElementById("profile_name").innerHTML = username;
             document.getElementById("comment").innerHTML = comment;
+
+            const id_user = account["id"];
+            const user_data = await fetchJSON("api/article/find", {
+                id_user: id_user
+            });
+
+            console.log(user_data);
+            
+            data_length = user_data.length;
+
+            for(let i=0; i < data_length; i++){
+
+            }
+
 
         }
     </script>

@@ -12,7 +12,9 @@ export class ArticleRepository {
 				location_x TEXT,
                 location_y TEXT,
 		        time TEXT,
-                tag TEXT
+                tag TEXT,
+                text TEXT,
+                image TEXT
 		    )
 		`);
     }
@@ -21,16 +23,18 @@ export class ArticleRepository {
         return this.db;
     }
 
-    add(id_user, name, location_x, location_y, time, tag) {
+    add(id_user, name, location_x, location_y, time, tag, text, image) {
 
         this.getDB().query(
-            "INSERT INTO articles (id_user, name, location_x, location_y, time, tag) VALUES ('" +
+            "INSERT INTO articles (id_user, name, location_x, location_y, time, text, tag) VALUES ('" +
             id_user + "', '" +
             name + "', '" +
             location_x + "', '" +
             location_y + "', '" +
             time + "', '" +
-            tag + "');"
+            tag + "', '" +
+            text + "', '" +
+            iamge + "');"
         )
 
         console.log("経路データが追加されました \"" + name + "\"");
