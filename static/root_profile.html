@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="root.css" type="text/css">
+        <link rel="stylesheet" href="root_profile.css" type="text/css">
         <script type="text/javascript" src="root.js"></script>
-        <script type="module" src="comment.js"></script>
+        <!-- <script type="module" src="comment.js"></script> -->
         <script type="text/javascript" src="rootTransition.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">
@@ -58,41 +58,23 @@
             <h2>投稿者コメント</h2>
             <p>取得した値 </p>
             <br><br><br><br><br><br>
-            <a href="">
-                <img src="sample.png" alt="次へ" width="50" height="50">
-                <div id="profile_name" href="" class="position3">"+ username +"</div>
-            </a>
-            <br>
-            <p>
+            <a href="./profile.html">
+            <img src="sample.png"  width="50" height="50">
+            <div id="profile_name" href="./profile.html" class="position3">ユーザー名</div>
+                </a>
+                <br>
+                <p>
                 <a class="good" onclick="countUpB();">
-                <img src="good.png" alt="次へ" width="100" height="30"></a>
+                <img src="good.png"  width="100" height="30"></a>
                 <span id="good" class="balloon-left">0</span>
-            </p>
-        </div>
-        <div class="position2">
-            <h2>コメント</h2>
-        <div id=container></div>
-        <div class=writebox>
-            <input type="text" class="inText" id=inp_name
-            placeholder="名前"><br>
-            <textarea class="textArea" id=inp_body
-            placeholder="コメント"
-            ></textarea><br>
-            <button class="btn-square" id=btn_write>書き込む</button>
-        </div>
+                </p>
+            </div>
         </div>   
         <script type="module">
         import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
         onload = async () => {
-            const query = location.search;
-            const v = query.split('=');
-            const hashKey = v[1];
-            console.log(hashKey);
-
-            const hashKey1 = sessionStorage.getItem('hashKey');
-            console.log(hashKey1);
-
-            const account = await fetchJSON("/api/account/findByHashKey", {
+            const hashKey = sessionStorage.getItem("hashKey");
+                const account = await fetchJSON("/api/account/findByHashKey", {
                 hashKey: hashKey
             });
 

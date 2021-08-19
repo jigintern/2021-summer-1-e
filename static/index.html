@@ -14,12 +14,12 @@
     <input type="search" id="kensaku" placeholder="キーワードを入力" />
     <input type="button" value="検索" onclick="(onchange)" />
     <div id="how_signup">
-        <a title="サインアップはこちら" id="signup_page" href="./signup.html" target="_blank" rel="noopener">サインアップ</a>
+        <a title="サインアップはこちら" id="signup_page" href="./signup.html">サインアップ</a>
     </div>
     <div id="how_login">
-        <a title="ログインはこちら" id="login_page" href="./login.html" target="_blank" rel="noopener">ログイン</a>
+        <a title="ログインはこちら" id="login_page" href="./login.html">ログイン</a>
     </div>
-    <a title="プロフィール(仮)" id="profile_page" href="./profile.html" target="_blank" rel="noopener">プロフィール(仮)</a>
+    <a title="プロフィール(仮)" id="profile_page" href="./root.html">プロフィール(仮)</a>
     <hr>
 
     <script type=module>
@@ -47,8 +47,8 @@
                 const username = account["username"];
 
                 document.getElementById("how_signup").innerHTML = "";
-                document.getElementById("how_login").innerHTML = '<a title="' + username + 'のホームページ" id="login_page" href="./profile.html?send_hash='+ hashKey +'" target="_blank" rel="noopener">' + username + '</a>';
-            }
+                document.getElementById("how_login").innerHTML = '<a title="' + username + 'のホームページ" id="login_page" href="./profile.html">' + username + '</a>';
+            }//?send_hash='+ hashKey +'
 
             // ページ構築
             const inputfilter = document.getElementById("kensaku");

@@ -28,7 +28,7 @@
         <h2 id="triptitle"><a id="tripurl" href="./root_profile.html">超綺麗な夜景を最高に楽しめる計画を立てた</a>
         </h2>
         </p>
-        <p><a href=" ./root_profile.html" target="_blank" rel="noopener"><img id="triplistimg"
+        <p><a href=" ./root_profile.html"><img id="triplistimg"
                     src="./profileimg/sample_profile_triplist.jpg" align="left"></a>
             〇〇の夜景がすごい綺麗だと伺ったので、<br>早速向かってみました。<br>夜になるまでに時間が沢山あるので、まずは✕✕というラーメン屋さんに突撃！</p>
         <br clear="left">
@@ -52,11 +52,7 @@
     <script type="module">
         import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
         onload = async () => {
-
-            console.log(location.search, location.search.split('='))
-            const hashKey = location.search.split('=')[1];
-            console.log(hashKey);
-
+            const hashKey = sessionStorage.getItem("hashKey");
             const account = await fetchJSON("/api/account/findByHashKey", {
                 hashKey: hashKey
             });
@@ -67,7 +63,7 @@
                     '<p>' +
                     '<h2 id="triptitle"><a id="tripurl" href="./root_profile.html?send_hash=' + account["username"] + '">' + title + '</a></h2>' +
                     '</p>' +
-                    '<p><a href="./root_profile.html" target="_blank" rel="noopener"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
+                    '<p><a href="./root_profile.html"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
                     description + '</p>' + '<br clear="left"></div>\n';
             };
 

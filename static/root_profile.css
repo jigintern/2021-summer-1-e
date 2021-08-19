@@ -24,6 +24,7 @@
     position: relative;
     left: 60px;
     bottom: 40px;
+    width: 0%;
     font-size: 30px;
   }
   .button1 {
