@@ -18,40 +18,29 @@
     </head>
     <body>
         <h2>ルート</h2>
-        <script>
-              $(function() {
-                // button
-                const btn_clone = $('#btn-clone');  // 追加ボタン
-                const btn_remove = $('#btn-remove');  // 削除ボタン
-                // clone
-                btn_clone.click(function() {
-                var text = $('.text').last();  // 最後尾にあるinput
-                    text
-                    .clone()  // クローン
-                    .val('')  // valueもクローンされるので削除する
-                    .insertAfter(text);
-                if ($('.text').length >= 2) {
-                    $(btn_remove).show();  // inputが2つ以上あるときに削除ボタンを表示
-                }
-                });
-                // remove
-                btn_remove.click(function() {
-                $('.text')
-                    .last()
-                    .remove();
-                if ($('.text').length < 2) {
-                    btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
-                }
-                });
-                });
-        </script>  
+    
         <form class="text">
-            <input type="text" name="text"  placeholder="場所名"></input>
-            <textArea name="text"  placeholder="詳細" style="height: 100px;"></textArea>
-            <br>   
+            <input type="text" name="placename"  placeholder="場所名" id=input-messageA></input>
+            <textArea name="text"  placeholder="詳細" style="height: 100px;" id=input-messageB></textArea>
         </form>
-        <button type="button" id="btn-clone">追加</button>
-        <button type="button" id="btn-remove">削除</button>
+        <br>  
+        <!--<button type="button" id="btn-clone">追加</button>
+        <button type="button" id="btn-remove">削除</button>-->
+        <button type="button" class="button3" id=btn_submit onclick="clickBtn5()">登録</button> 
+
+        
+        <form class="route">
+            <input type="button" onclick="clickBtn1(this.id)" class="button1" id="output-messageA">
+            <div class="hidden"><a id=output-messageB></a></div>
+            <!--<div class="formBalloon" style="position: absolute; z-index: 2;">
+                <div class="fomBalloonContent"></div>
+                <div class="formBalloonArrow"></div>
+            </div>-->
+        </form>
+        
+        <script>
+            document.getElementById("p1").style.display ="none";
+        </script>
         <div class="position1">
             <h2>地図</h2> 
             <div id="map"></div>
@@ -67,6 +56,9 @@
 
                 // initialize the map on the "map" div with a given center and zoom
                 var map = L.map('map').setView([35.943560, 136.188917], 17).addLayer(osm);
+                const btn_clone = $('#btn-clone');  // 追加ボタン
+                const btn_remove = $('#btn-remove');  // 削除ボタン
+                var i = 0;
                 // Script for adding marker on map click
                 function onMapClick(e) {
 
@@ -75,20 +67,99 @@
                         title: "Resource location",
                         alt: "Resource Location",
                         riseOnHover: true
-                    }).addTo(map)
+                    }).addTo(map).on('click', onMarkerClick)
                         .bindPopup(e.latlng.toString()).openPopup();
                     // Update marker on changing it's position
                     marker.on("dragend", function (ev) {
                         var chagedPos = ev.target.getLatLng();
                         this.bindPopup(chagedPos.toString()).openPopup();
                     });
+                    //
+                    i++;
+                    var text = $('.text').last();  // 最後尾にあるinput
+                    text
+                    .clone() // クローン
+                    .val('')  // valueもクローンされるので削除する
+                    .insertAfter(text)
+                    .attr('id',"idA"+i);
+                    /*const outputA = "input-messageA"+i;
+                    const outputB = "input-messageB"+i;
+                    document.getElementById("input-messageA"+(i-1)).id = outputA;
+                    document.getElementById("input-messageB"+(i-1)).id = outputB;*/
+                    /*
+                    //document.getElementById("output-message1").id = "input-message1"+i;
+                    let element = document.getElementById("idA"+i);
+                    let children = element.childNodes;
+                    // インデックスを指定して Node オブジェクトを取得
+                    let element2 = children.item(0);
+                     //次の形式でもインデックスを指定して Node オブジェクトを取得
+                    let element3 = children[0];
+                    console.log(element3);
+                    //element3.setAttribute('id','input-messageA'+i);
+                    element3['id'] = 'input-messageA'+i;
+                    */
+                    var list_element = document.getElementById("idA"+i);
+                    var first_child_element = list_element.firstElementChild;
+                    var next_element = first_child_element.nextElementSibling;
+                    first_child_element['id'] = 'input-messageA'+i;
+                    next_element['id'] = 'input-messageB'+i;
+
+
                 }
                 map.on('click', onMapClick);
+                function onMarkerClick(e) {
+                    i--;
+                map.removeLayer(e.target);
+                $('.text')
+                    .last()
+                    .remove();
+                if ($('.text').length < 2) {
+                    btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
+                }
+                }
+   
+                function clickBtn5() {
+                    for (let a = 1; a <= i; a++) {
+                        var route = $('.route').last();  // 最後尾にあるinput
+                        route
+                        .clone() // クローン
+                        .val('')  // valueもクローンされるので削除する
+                        .insertAfter(route)
+                        .attr('id',"idB"+a);
+                        
+                        var list_element2 = document.getElementById("idB"+a);
+                        var first_child_element2 = list_element2.firstElementChild;
+                        var last_child_element2 = list_element2.lastElementChild;
+                        var next_element2 = first_child_element2.nextElementSibling;
+                        first_child_element2['id'] = 'output-messageA'+a;
+                        next_element2['id'] = 'output-messageB'+a;
+                        
+                        const textbox = document.getElementById("input-messageA"+a);
+                        console.log(textbox.value);
+                        const inputValue = textbox.value;
+                        const output = inputValue;
+                        document.getElementById("output-messageA"+a).value = output;
+
+                        const textbox2 = document.getElementById("input-messageB"+a);
+                        console.log(textbox2.value);
+                        const inputValue2 = textbox2.value;
+                        const output2 = inputValue2;
+                        document.getElementById("output-messageB"+a).innerHTML = output2;
+                        document.getElementById("output-messageB"+a).style.display ="none";
+                        
+                    }
+
+                }
+                                
              </script>
         </div>
         <div class="position2">
             <h2>投稿者コメント</h2>
             <textarea class="textArea" id=inp_body placeholder="コメント"></textarea><br>
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="avatar" accept="image/*">
+                <button type="submit">送信する</button>
+              </form>
             <button class="button2" id=btn_write onclick="clickBtn2()">登録</button> 
         </div>
     </body>

@@ -17,7 +17,10 @@
         <title>ル－ト</title>
     </head>
     <body>
-        <h2>ルート</h2>  
+        <h2>ルート</h2> 
+        <script>
+        </script> 
+        <form>
         <input type="button" value="ルート1" onclick="clickBtn1()" class="button1"/>
         <div id="p1" class="hidden">ルート詳細</div>
         <script>
@@ -27,30 +30,253 @@
             <div class="formBalloonContent"></div>
             <div class="formBalloonArrow"></div>
           </div>
+        </form>
+        <script>
+          function clickBtn3() {
+    const div2 = document.getElementById("div2");
+    // 要素の追加
+    if (!div2.hasChildNodes()) {
+      const input1 = document.createElement("input");
+      const input2 = document.createElement("input");
+      input1.setAttribute("type", "text");
+      input1.setAttribute("maxlength", "5");
+      input1.setAttribute("size", "10");
+      input2.setAttribute("type", "text");
+      input2.setAttribute("maxlength", "30");
+      input2.setAttribute("size", "10");
+      div2.appendChild(input1);
+      div2.appendChild(input2);
+    }
+  }
+  function clickBtn4() {
+    const div2 = document.getElementById("div2");
+    if (div2.hasChildNodes()) {
+      div2.removeChild(div2.firstChild);
+    }
+  }
+  </script>
+  <br><br>
+  <form class="text">
+    <input type="text" name="text"  placeholder="場所名"></input>
+    <textArea name="text"  placeholder="詳細" style="height: 100px;"></textArea>
+    <br>   
+</form>
+<button type="button" id="btn-clone">追加</button>
+<button type="button" id="btn-remove">削除</button>
         <div class="position1">
             <h2>地図</h2> 
             <div id="map"></div>
-            <script>
-                var mymap = L.map('map').setView([35.943560, 136.188917], 17);
-                
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    maxZoom: 18,
-                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
-                }).addTo(mymap);
-
-                var marker = L.marker([35.94354, 136.1884]).addTo(mymap);
-                marker.bindPopup("<p>popup1</p><p>地図表示時に一緒に表示されます。</p>").openPopup();
-
-                var marker2 = L.marker([35.9432, 136.1889]).addTo(mymap);
-                var popup = L.popup();
-                function onMarker2Click(e) {
-                    popup
-                        .setLatLng(e.latlng)
-                        .setContent("<p>popup2</p><p>clickで表示されます。</p>" + e.latlng.toString())
-                        .openOn(mymap);
+            <script type="module">
+                import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+    
+                const location = [];
+                const first_id = make_random_string();
+                const text_ids = []; //text id の識別子
+    
+                const button = document.getElementById('btn_write');
+    
+    
+                async function submit_data(){
+                    let text_data = "";
+                    const location_x = "";
+                    const location_y = "";
+                    let comment = "";
+                    const time = getNowYMDStr();
+                    let tag = [];
+                    let image = "";
+                    let name = "";
+                    
+                    const hashKey = sessionStorage.getItem("hashKey");
+                    const account = await fetchJSON("/api/account/findByHashKey", {
+                        hashKey: hashKey
+                    });
+    
+                    const id = account['id'];
+    
+                    for(let i = 0; i < location.length; i++){
+    
+                        location_x.push(location[i][0]);
+                        location_y.push(location[i][1]);
+                    }
+    
+                    const location_x_str = 
+    
+    
+    
+    
+    
+    
                 }
-                mymap.on('click', onMarker2Click);
-             </script>
+    
+                function getNowYMDStr(){
+                    const date = new Date()
+                    const Y = date.getFullYear()
+                    const M = ("00" + (date.getMonth()+1)).slice(-2)
+                    const D = ("00" + date.getDate()).slice(-2)
+    
+                    return Y + M + D
+                }
+    
+                button.onclick = submit_data;
+    
+    
+                // We’ll add a tile layer to add to our map, in this case it’s a OSM tile layer.
+                // Creating a tile layer usually involves setting the URL template for the tile images
+                var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+                    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    osm = L.tileLayer(osmUrl, {
+                        maxZoom: 18,
+                        attribution: osmAttrib
+                    });
+    
+                window.onload = function(){
+                    const p1 = document.getElementById("0");
+                    p1.style.display ="none";
+                    p1.id = first_id;
+                    text_ids.push(first_id);
+                };
+    
+                function make_random_string(){
+                    const l = 50;
+                    const c = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    const cl = c.length;
+                    let r = "";
+                    for(let i=0; i<l; i++){
+                        r += c[Math.floor(Math.random()*cl)];
+                    }
+                    return r;
+                }
+    
+                let i = 0;
+    
+                // initialize the map on the "map" div with a given center and zoom
+                var map = L.map('map').setView([35.943560, 136.188917], 17).addLayer(osm);
+                //const btn_clone = $('#btn-clone');
+                const btn_remove = $('#btn-remove');  // 削除ボタン
+                // Script for adding marker on map click
+                function onMapClick(e) {
+    
+                    var marker = L.marker(e.latlng, {
+                        draggable: true,
+                        title: "Resource location",
+                        alt: "Resource Location",
+                        riseOnHover: true
+                    }).addTo(map).on('click', onMarkerClick)
+                        .bindPopup(e.latlng.toString()).openPopup();
+                    // Update marker on changing it's position
+                    marker.on("dragend", function (ev) {
+                        var chagedPos = ev.target.getLatLng();
+                        this.bindPopup(chagedPos.toString()).openPopup();
+                    });
+    
+                    const location_data = [e.latlng.lat, e.latlng.lng];
+                    location.push(location_data);
+                    console.log(location);
+    
+                    if(i != 0){
+    
+                        let r = make_random_string();
+    
+                        while(true){ //ランダムな識別子の生成
+                            const none_id = text_ids.indexOf(r);
+                            if(none_id == -1){
+                                break;
+                            }
+                            r = make_random_string();
+                        }                    
+    
+                        text_ids.push()
+    
+                        //ボックス追加の処理
+                        var text = $('.text').last();  // 最後尾にあるinput
+                        text
+                            .clone()  // クローン
+                            .val('')  // valueもクローンされるので削除する
+                            .insertAfter(text)
+                            .attr('id',r);
+                    
+                        const a = document.getElementById(r).getElementsByClassName("text_val");
+                        a.item(0).value = "";
+                        a.item(1).value = "";
+                        i++;
+    
+                        if ($('.text').length >= 2) {
+                            $(btn_remove).show();  // inputが2つ以上あるときに削除ボタンを表示
+                        }
+    
+                        text_ids.push(r);
+                    }else if(i == 0){
+                        console.log(text_ids[0]);
+                        const p1 = document.getElementById(text_ids[0]);
+                        p1.style.display ="block";
+                        //text_ids.push(first_id);
+                        const a = p1.getElementsByClassName("text_val");
+                        a.item(0).value = "";
+                        a.item(1).value = "";
+    
+                        i++;
+                    }else{
+                        //何もしない
+                    }
+    
+                    console.log(i);
+                    console.log(text_ids);                
+                }
+    
+                map.on('click', onMapClick);
+    
+                function onMarkerClick(e) {
+    
+                    const delete_data = [e.latlng.lat, e.latlng.lng];
+    
+                    console.log(delete_data);
+    
+                    let is_index = 0;
+    
+                    for (let i = 0; i < location.length; i++) {
+                        if (location[i][0] == e.latlng.lat && location[i][1] == e.latlng.lng) {
+                            is_index = i;
+                        }
+                    }
+    
+                    console.log(is_index);
+                    location.splice(is_index, 1);
+                    console.log(location);
+    
+                    const select_text_id = text_ids[is_index];
+    
+                    //マーカーのclickイベント呼び出される
+                    //クリックされたマーカーを地図のレイヤから削除する
+                    map.removeLayer(e.target);
+                    //ボックス削除の処理
+    
+                    if(i != 1){
+                        const delete_targe = "#" + select_text_id;
+                        console.log(delete_targe);
+    
+                        $('.text')
+                            $(delete_targe).remove();
+    
+                        if ($('.text').length < 2) {
+                            btn_remove.hide();  // inputが2つ未満のときに削除ボタンを非表示
+                        }
+    
+                        text_ids.splice(is_index, 1);
+    
+                        i--;
+                    }else if(i == 1){
+    
+                        const p1 = document.getElementById(text_ids[0]);
+                        p1.style.display ="none";
+                        i--;
+                    }
+    
+                    console.log(i);
+                    console.log(text_ids);
+    
+                }
+    
+            </script>
         </div>
         <div class="position2">
             <h2>投稿者コメント</h2>

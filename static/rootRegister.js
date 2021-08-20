@@ -1,3 +1,5 @@
+var $countB = 0;
+
 /*function coloeSet(argObj){
     if(argObj.value==""){
         argObj.style.backgroundColor = "";
@@ -50,3 +52,23 @@ function clickBtn3() {
       div2.removeChild(div2.firstChild);
     }
   }
+
+        
+  function clickBtn1(id){
+    var result = id.replace( 'A', 'B' );
+    const p1 = document.getElementById(result);
+
+    if(p1.style.display=="block"){
+        p1.style.display ="none";
+    }else{
+        p1.style.display ="block";
+    }
+    
+}
+
+
+function countUpB() {
+    document.getElementById( "good" ).innerHTML = ++$countB;
+}
+
+
