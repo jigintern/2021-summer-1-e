@@ -9,6 +9,8 @@
 
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <body>
     <h1 class="main"><a id="homepage" href="./index.html">TRIP LIST</a></h1>
     <div id="profilemain">
@@ -23,32 +25,18 @@
         </div>
     </div>
     <h1 class="main">公開しているTRIPLIST</h1>
-    <div class="tripbox">
+
+    <div class="tripbox" id="0">
         <p>
-        <h2 id="triptitle"><a id="tripurl" href="./root_profile.html">超綺麗な夜景を最高に楽しめる計画を立てた</a>
+        <h2 id="triptitle"><a id="tripurl" href="./root_profile.html"></a>
         </h2>
         </p>
-        <p><a href=" ./root_profile.html"><img id="triplistimg"
+        <p id="user_comment"><a href=" ./root_profile.html"><img id="triplistimg0"
                     src="./profileimg/sample_profile_triplist.jpg" align="left"></a>
-            〇〇の夜景がすごい綺麗だと伺ったので、<br>早速向かってみました。<br>夜になるまでに時間が沢山あるので、まずは✕✕というラーメン屋さんに突撃！</p>
+            〇〇の夜景がすごい綺麗だと伺ったので、早速向かってみました。夜になるまでに時間が沢山あるので、まずは✕✕というラーメン屋さんに突撃！</p>
         <br clear="left">
     </div>
-    <div class="tripbox">
-        <p>
-        <h2 id="triptitle">北極点がめちゃくちゃカッコよく見える場所に来てみた</h2>
-        </p>
-        <p> <a href=""><img id="triplistimg" src="./profileimg/sample_profile_triplist2.jpg" align="left"></a>
-            〇〇まで１週間の旅行が決まったので、道中で気になっていた✕✕に向かうことに！</p>
-        <br clear="left">
-    </div>
-    <div class="tripbox">
-        <p>
-        <h2 id="triptitle">満開の桜を見るにはここしかない！</h2>
-        </p>
-        <p><a href=""><img id="triplistimg" src="./profileimg/sample_profile_triplist3.jpg" align="left"></a>
-            桜ｻｲｺｰ<br>メンターｻｲｷｮｰ</p>
-        <br clear="left">
-    </div>
+
     <script type="module">
         import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
         onload = async () => {
@@ -59,25 +47,29 @@
 
             let article = (title, description, thumbnailUrl) => {
                 return
-                    '<div class="tripbox">' +
                     '<p>' +
                     '<h2 id="triptitle"><a id="tripurl" href="./root_profile.html?send_hash=' + account["username"] + '">' + title + '</a></h2>' +
                     '</p>' +
                     '<p><a href="./root_profile.html"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
-                    description + '</p>' + '<br clear="left"></div>\n';
+                    description + '</p>';
             };
+
+            function articles(title, description, thumbnailUrl){
+                return '<p>' +
+                        '<h2 id="triptitle"><a id="tripurl" href="./root_profile.html?send_hash=' + account["username"] + '">' + title + '</a></h2>' +
+                        '</p>' +
+                        '<p><a href="./root_profile.html"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
+                        description + '</p>';
+            }
+
+            document.getElementById("0").style.display = "none";
 
             const username = account["username"];
             const comment = account["comment"];
             document.getElementById("profile_name").innerHTML = username;
             document.getElementById("comment").innerHTML = comment;
 
-            document.getElementsByClassName("main").innerHTML =
-                article(
-                    "超綺麗な夜景を最高に楽しめる計画を立てた",
-                    "〇〇の夜景がすごい綺麗だと伺ったので、<br>早速向かってみました。<br>夜になるまでに時間が沢山あるので、まずは✕✕というラーメン屋さんに突撃！",
-                    "./profileimg/sample_profile_triplist.jpg"
-                );
+            console.log(document.getElementById("0").innerHTML);
 
             const id_user = account["id"];
             const user_data = await fetchJSON("api/article/find", {
@@ -88,7 +80,24 @@
 
             const data_length = user_data.length;
 
+            //console.log(document.getElementById("tripurl0").textContent);
+
+            //document.getElementById("tripurl0").textContent = user_data[1][2];
+
             for (let i = 0; i < data_length; i++) {
+                if(i==0){
+                    document.getElementById("0").style.display = "block";
+                }else{
+                    const trip_box = $('.tripbox').last();
+                    trip_box.clone().insertAfter(trip_box).attr('id',i);;
+                }
+
+                document.getElementById(i.toString()).innerHTML = articles(
+                    user_data[i][2],
+                    user_data[i][7],
+                    "./profileimg/sample_profile_triplist.jpg"
+                    //user_data[i][9]
+                );
             }
         }
     </script>
