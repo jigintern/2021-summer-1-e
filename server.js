@@ -77,4 +77,4 @@ class MyServer extends Server {
 }
 
 // 8885がeチームの開発サーバーっぽい
-new MyServer(8006);
+new MyServer(8885);

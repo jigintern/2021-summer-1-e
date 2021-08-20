@@ -24,15 +24,15 @@
 
 <body>
     <h1><a id="homepage" href="./index.html">TRIP LIST</a></h1>
-    <h2>ルート</h2>
+    <div id="route">
+        <h2>ルート</h2>
     
-    <form class="text" id="0">
-        <input type="text" class="text_val" name="text" placeholder="場所名"></input>
-        <textArea name="text" class="text_val" placeholder="詳細" style="height: 100px;"></textArea>
-        <br>
-    </form>
-    <button type="button" id="btn-clone">追加</button>
-    <button type="button" id="btn-remove">削除</button>
+        <form class="text" id="0">
+            <input type="text" class="text_val" name="text" placeholder="場所名"></input>
+            <textArea name="text" class="text_val" placeholder="詳細" style="height: 100px;"></textArea>
+            <br>
+        </form>
+    </div>
     <div class="position1">
         <h2>地図</h2>
         <div id="map"></div>
@@ -182,6 +182,9 @@
                 location.push(location_data);
                 console.log(location);
 
+                //ここ
+                window.scrollBy(0,140);
+
                 if(i != 0){
 
                     let r = make_random_string();
@@ -192,8 +195,7 @@
                             break;
                         }
                         r = make_random_string();
-                    }                    
-
+                    }
                     text_ids.push()
 
                     //ボックス追加の処理
@@ -258,6 +260,7 @@
                 //クリックされたマーカーを地図のレイヤから削除する
                 map.removeLayer(e.target);
                 //ボックス削除の処理
+                window.scrollBy(0,-140);
 
                 if(i != 1){
                     const delete_targe = "#" + select_text_id;
@@ -284,12 +287,20 @@
                 console.log(text_ids);
 
             }
+            $('.fileinput').on('change', function(){
+                let file = $(this).prop('files')[0];
+                $('.filelabel').text(file.name);
+            });
         </script>
     </div>
     <div class="position2">
         <h2>投稿者コメント</h2>
+        <input type="text" id="name_id" placeholder="ルート記事の名前"></input><br>
         <textarea class="textArea" id=inp_body placeholder="コメント"></textarea><br>
-        <input type="text" id="name_id" placeholder="ルートの名前"></input>
+        <form action="index.html" method="POST" entype="multpart/form-data">
+            <label for="file" class="filelabel">ファイルを添付</label>
+            <input type="file" name="fileinput" id="file" class="fileinput">
+          </form>
         <button class="button2" id=btn_write onclick="submit_data()">登録</button>
     </div>
 </body>
