@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
+
         <link rel="stylesheet" href="root.css" type="text/css">
         <script type="text/javascript" src="root.js"></script>
         <script type="module" src="comment.js"></script>
@@ -14,9 +15,10 @@
         <link rel="stylesheet" href="css/leaflet-search.min.css">
         <script src="js/leaflet-search.min.js"></script>
         <!-- plugin -->
-        <title>ル－ト</title>
+        <title>TRIP_LIST_ROOT</title>
     </head>
     <body>
+        <h1><a id="homepage" href="./index.html">TRIP LIST</a></h1>
         <h2>ルート</h2>  
         <input type="button" value="ルート1" onclick="clickBtn1()" class="button1"/>
         <div id="p1" class="hidden">ルート詳細</div>
@@ -73,13 +75,11 @@
         <div id=container></div>
         <div class=writebox>
             <input type="text" class="inText" id=inp_name
-
             placeholder="名前"><br>
             <textarea class="textArea" id=inp_body
             placeholder="コメント"
             ></textarea><br>
             <button class="btn-square" id=btn_write>書き込む</button>
-
         </div>
         </div>   
     </body>

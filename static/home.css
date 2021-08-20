@@ -15,14 +15,14 @@ form{
 }
 input[type="search"]{
     position:relative;
-
     left: 200px;
-    width: 900px;
+    width: 500px;
     height: 100px;
     font-size: 200%;
 }
 input[type="button"]{
     position:relative;
+    left:200px;
     width: 200px;
     height: 100px;
     font-size: 200%;
@@ -30,13 +30,13 @@ input[type="button"]{
 
 a[id="signup_page"]{
     position:relative;
-    left:50px;
-    font-size:20px;
+    left:250px;
+    font-size:30px;
 }
 a[id="login_page"]{
     position:relative;
-    left:100px;
-    font-size:20px;
+    left:270px;
+    font-size:30px;
 }
 a[id="homepage"]{
     color: #6cb4e4;
@@ -50,6 +50,29 @@ a[id="homepage"]{
 }
 a[id="profile_page"]{
     position:relative;
-    left:100px;
+    left:280px;
     font-size:10px;
+}
+div[id="how_login"],div[id="how_signup"]{
+    position: relative;
+    display:inline;
+
+}
+button[id="logout"]{
+    position: relative;
+    left:320px;
+    background-color: transparent;
+    font-size: 30px;
+    border: none;  
+    color:rgb(45, 59, 59);
+}
+button[id="logout"]:hover{
+    border: solid 2px #6cb4e4; 
+    border-radius: 30px;
+}
+input[id="logout"]{
+    position: relative;
+    background-color: transparent;
+    left: 300px;
+ 
 }

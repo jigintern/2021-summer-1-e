@@ -5,11 +5,6 @@ export class Account {
 		this.password = data[2];
 		this.email = data[3];
 		this.comment = data[4];
+		this.hashKey = data[5];
 	}
-
-	getId() {return this.id}
-	getName() {return this.username;}
-	getEmail() {return this.email;}
-	getPassword() {return this.password}
-	getComment() {return this.comment;}
 }
