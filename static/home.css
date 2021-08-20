@@ -76,3 +76,7 @@ input[id="logout"]{
     left: 300px;
  
 }
+img[id="logo"]{
+    width: 40px;
+    height: auto;
+}

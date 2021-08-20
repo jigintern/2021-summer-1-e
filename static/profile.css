@@ -72,3 +72,7 @@ h2[id="triptitle"]{
     font-size: 40px;
     margin: 5px;
 }
+img[id="logo"]{
+    width: 40px;
+    height: auto;
+}

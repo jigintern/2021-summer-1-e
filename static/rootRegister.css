@@ -249,3 +249,7 @@ input[id="name_id"]:focus {
 .fileinput{
   display: none;
 }
+img[id="logo"]{
+  width: 40px;
+  height: auto;
+}
