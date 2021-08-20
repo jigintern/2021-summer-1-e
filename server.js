@@ -66,10 +66,9 @@ class MyServer extends Server {
 				data.push(req);
 				jsonfs.write(datafn, data);
 				return "ok";
-				break;
+
 			case "/api/board/list":
 				return data;
-				break;
 			default:
 				console.log("予期していないリクエスト", req);
 				break;

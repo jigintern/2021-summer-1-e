@@ -82,7 +82,14 @@
             const username = account["username"];
             const comment = account["comment"];
             document.getElementById("profile_name").innerHTML = username;
-           // document.getElementById("comment").innerHTML = comment;
+            // document.getElementById("comment").innerHTML = comment;
+            const id = account['id'];
+            const contents = await fetchJSON("api/article/find",{
+                id_user: id
+            });
+
+            console.log(contents);
+           
         }
         </script>
     </body>

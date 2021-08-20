@@ -47,7 +47,11 @@
 
 
             async function submit_data(){
-                if(i != 0){
+                if(i == 0){
+                    alert("コンテンツを追加してください");
+                }else if(document.getElementById("name_id").value == ""){
+                    alert("名前を追加してください");
+                }else if(i != 0){
                     
                     let text_data = [];//
                     const location_x = [];//
@@ -56,7 +60,7 @@
                     const time_data = getNowYMDStr();//
                     let tag = [];//
                     let image_path = "";
-                    let name_data = "";
+                    let name_data = document.getElementById("name_id").value;
                 
                     const hashKey = sessionStorage.getItem("hashKey");
                     const account = await fetchJSON("/api/account/findByHashKey", {
@@ -101,25 +105,15 @@
                         image: image_path
                     });
 
-                    
-
-                    /*
-                    const submit_result = await fetchJSON("api/article/add", {
-                        id_user: 123,
-                        name: "kouno",
-                        location_x: "50, 50",
-                        location_y: "50, 50",
-                        time: "10:10",
-                        tag: "Fuji",
-                        text: "aiueo",
-                        comments: "do it",
-                        image: "/path"
-                    });
                     console.log(submit_data);
-                    */
 
-                    
-
+                    if(submit_data){
+                        alert("ルートの登録完了しました");
+                        location.href = "/index.html"
+                    }else{
+                        alert("エラーが発生しました");
+                        location.reload()
+                    }
                 }
             }
 
@@ -295,6 +289,7 @@
     <div class="position2">
         <h2>投稿者コメント</h2>
         <textarea class="textArea" id=inp_body placeholder="コメント"></textarea><br>
+        <input type="text" id="name_id" placeholder="ルートの名前"></input>
         <button class="button2" id=btn_write onclick="submit_data()">登録</button>
     </div>
 </body>
