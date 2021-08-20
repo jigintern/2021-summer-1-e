@@ -1,5 +1,6 @@
-import {DB} from "https://deno.land/x/sqlite/mod.ts";
-import {Account} from "./Account.js";
+import { DB } from "https://deno.land/x/sqlite/mod.ts";
+import { Account } from "./Account.js";
+import { HashUseCase } from "./HashUseCase.js";
 
 export class AccountRepository {
 	constructor() {
@@ -10,23 +11,27 @@ export class AccountRepository {
 		        username TEXT,
 				password TEXT,
 		        email TEXT,
-		        comment TEXT
+		        comment TEXT,
+				hashKey TEXT
 		    )
 		`);
 	}
-	
+
 	getDB() {
 		return this.db;
 	}
-	
-	add(username, password, email, comment) {
+
+	async add(username, password, email, comment) {
+		const hashKey = await HashUseCase.getHash();
+
 		this.getDB().query(
-            "INSERT INTO accounts (username, password, email, comment) VALUES ('" +
-            username + "', '" +
-            password + "', '" +
-            email + "', '" +
-            comment + "');"
-        )
+			"INSERT INTO accounts (username, password, email, comment, hashKey) VALUES ('" +
+			username + "', '" +
+			password + "', '" +
+			email + "', '" +
+			comment + "', '" +
+			hashKey + "');"
+		)
 
 		return "アカウントが追加されました \"" + username + "\"";
 	}
@@ -43,11 +48,9 @@ export class AccountRepository {
 	findAccountBy(dataKey, dataValue, password) {
 		const data = this.findBy(dataKey, dataValue)[0];
 
-		if(Array.isArray(data)) {
-			if(data[2] !== undefined) {
-				if(data[2] === password) {
-					return new Account(data);
-				}
+		if (Array.isArray(data)) {
+			if (data[2] === password) {
+				return new Account(data);
 			}
 		}
 
@@ -60,6 +63,10 @@ export class AccountRepository {
 
 	findByEmail(email, password) {
 		return this.findAccountBy("email", email, password);
+	}
+
+	findByHashKey(hashKey) {
+		return new Account(this.getDB().query("SELECT * FROM accounts WHERE hashKey = '" + hashKey + "';")[0]);
 	}
 
 	exists(key, value) {

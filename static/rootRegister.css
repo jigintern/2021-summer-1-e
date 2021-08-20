@@ -40,6 +40,7 @@
   .button1:hover {
     background-color: #299b42;
   }
+
   .button2 {
     position: relative;
     display: block;
@@ -239,5 +240,3 @@
     height: 500px;
     width: 500px;
   }
-
-  

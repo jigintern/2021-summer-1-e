@@ -46,5 +46,3 @@ function coloeSet(argObj){
    if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
    argObj.style.height = wSclollHeight + "px";
  }
- 
-
