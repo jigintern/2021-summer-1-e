@@ -45,23 +45,6 @@
                 hashKey: hashKey
             });
 
-            let article = (title, description, thumbnailUrl) => {
-                return
-                    '<p>' +
-                    '<h2 id="triptitle"><a id="tripurl" href="./root_profile.html?send_hash=' + account["username"] + '">' + title + '</a></h2>' +
-                    '</p>' +
-                    '<p><a href="./root_profile.html"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
-                    description + '</p>';
-            };
-
-            function articles(title, description, thumbnailUrl){
-                return '<p>' +
-                        '<h2 id="triptitle"><a id="tripurl" href="./root_profile.html?send_hash=' + account["username"] + '">' + title + '</a></h2>' +
-                        '</p>' +
-                        '<p><a href="./root_profile.html"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
-                        description + '</p>';
-            }
-
             document.getElementById("0").style.display = "none";
 
             const username = account["username"];
@@ -75,6 +58,15 @@
             const user_data = await fetchJSON("api/article/find", {
                 id_user: id_user
             });
+
+            function articles(title, description, thumbnailUrl, number){
+                const href_c = "./root_profile.html?lib=jquery&ver=3";
+                return '<p>' +
+                        '<h2 id="triptitle"><a id="tripurl" href=' + href_c + '>' + title + '</a></h2>' +
+                        '</p>' +
+                        '<p><a href="./root_profile.html"><img id="triplistimg" src="' + thumbnailUrl + '" align="left"></a>' +
+                        description + '</p>';
+            }
 
             console.log(user_data);
 
@@ -95,8 +87,9 @@
                 document.getElementById(i.toString()).innerHTML = articles(
                     user_data[i][2],
                     user_data[i][7],
-                    "./profileimg/sample_profile_triplist.jpg"
-                    //user_data[i][9]
+                    "./profileimg/sample_profile_triplist.jpg",
+                    //user_data[i][9],
+                    i
                 );
             }
         }
