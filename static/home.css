@@ -58,6 +58,7 @@ div[id="how_login"],div[id="how_signup"]{
     display:inline;
 
 }
+<<<<<<< Updated upstream
 button[id="logout"]{
     position: relative;
     left:320px;
@@ -69,4 +70,11 @@ button[id="logout"]{
 button[id="logout"]:hover{
     border: solid 2px #6cb4e4; 
     border-radius: 30px;
+=======
+input[id="logout"]{
+    position: relative;
+    background-color: transparent;
+    left: 300px;
+ 
+>>>>>>> Stashed changes
 }
