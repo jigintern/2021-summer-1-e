@@ -58,3 +58,15 @@ div[id="how_login"],div[id="how_signup"]{
     display:inline;
 
 }
+button[id="logout"]{
+    position: relative;
+    left:320px;
+    background-color: transparent;
+    font-size: 30px;
+    border: none;  
+    color:rgb(45, 59, 59);
+}
+button[id="logout"]:hover{
+    border: solid 2px #6cb4e4; 
+    border-radius: 30px;
+}

@@ -21,6 +21,7 @@
         
     </div>
     <a title="プロフィール(仮)" id="profile_page" href="./root.html">他人から見たルート</a>
+    <button title="ログアウトはこちら" value="ログアウト" id="logout" onclick="logout_bt()" >ログアウト</button>
     
     <hr>
 
@@ -34,6 +35,10 @@
         onload = async() => {
             const hashKey = sessionStorage.getItem('hashKey');
             console.log(hashKey);
+
+            if(hashKey == null){
+                document.getElementById("logout").style.display = "none";
+            }
 
             const existResult = await fetchJSON("api/account/exist", {
                 key: "hashKey",
@@ -123,7 +128,6 @@
         }
     </script>
 
-    <button value="ログアウト" id="logout" onclick="logout_bt()">ログアウト</button>
 </body>
 
 </html>
