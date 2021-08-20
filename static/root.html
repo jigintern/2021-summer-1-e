@@ -20,15 +20,16 @@
     <body>
         <h1><a id="homepage" href="./index.html"><img id="logo" src="./profileimg/LOGO.png"/>TRIP LIST<img id="logo" src="./profileimg/LOGO.png"/></a></h1>
         <h2>ルート</h2>  
-        <input type="button" value="ルート1" onclick="clickBtn1()" class="button1"/>
-        <div id="p1" class="hidden">ルート詳細</div>
-        <script>
-        document.getElementById("p1").style.display ="none";
-        </script>
-        <div class="formBalloon" style="position: absolute; z-index: 2;">
-            <div class="formBalloonContent"></div>
-            <div class="formBalloonArrow"></div>
-          </div>
+
+        <form class="route">
+            <input type="button" onclick="clickBtn1(this.id)" class="button1" id="output-messageA">
+            <div class="hidden"><a id=output-messageB></a></div>
+            <!--<div class="formBalloon" style="position: absolute; z-index: 2;">
+                <div class="fomBalloonContent"></div>
+                <div class="formBalloonArrow"></div>
+            </div>-->
+        </form>
+
         <div class="position1">
             <h2>地図</h2> 
             <div id="map"></div>
@@ -36,6 +37,15 @@
                 var mymap = L.map('map').setView([35.943560, 136.188917], 17);
 
                 import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+
+                var mymap = L.map('map').setView([35.943560, 136.188917], 17);
+                
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
+                }).addTo(mymap);
+
+                var map = L.map('map').setView([35.943560, 136.188917], 17).addLayer(osm);
 
                 const hashKey = sessionStorage.getItem("hashKey");
                 const account = await fetchJSON("/api/account/findByHashKey", {
@@ -53,24 +63,16 @@
 
                 const content = contents[0];
 
-                
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    maxZoom: 18,
-                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
-                }).addTo(mymap);
+                const x = content[3].split(',');
+                const y = content[4].split(',');
+                const name_data_ = content[6].split(',');
 
-                var marker = L.marker([35.94354, 136.1884]).addTo(mymap);
-                marker.bindPopup("<p>popup1</p><p>地図表示時に一緒に表示されます。</p>").openPopup();
+                const len = x.length;
 
-                var marker2 = L.marker([35.9432, 136.1889]).addTo(mymap);
-                var popup = L.popup();
-                function onMarker2Click(e) {
-                    popup
-                        .setLatLng(e.latlng)
-                        .setContent("<p>popup2</p><p>clickで表示されます。</p>" + e.latlng.toString())
-                        .openOn(mymap);
+                for(let ln=0; ln < len; ln++){
+                    L.marker([x[ln], y[ln]]).bindPopup(name_data_[ln]).addTo(mymap);
                 }
-                mymap.on('click', onMarker2Click);
+
              </script>
         </div>
         <div class="position2">
@@ -93,7 +95,7 @@
             <h2>コメント</h2>
         <div id=container></div>
         <div class=writebox>
-            <input type="text" class="inText" id=inp_name
+            <input type="text" class="inText" id=profile_name
             placeholder="名前"><br>
             <textarea class="textArea" id=inp_body
             placeholder="コメント"
