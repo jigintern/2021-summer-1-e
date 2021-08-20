@@ -32,8 +32,27 @@
         <div class="position1">
             <h2>地図</h2> 
             <div id="map"></div>
-            <script>
+            <script type="module">
                 var mymap = L.map('map').setView([35.943560, 136.188917], 17);
+
+                import {fetchJSON} from "https://js.sabae.cc/fetchJSON.js";
+
+                const hashKey = sessionStorage.getItem("hashKey");
+                const account = await fetchJSON("/api/account/findByHashKey", {
+                    hashKey: hashKey
+                });
+
+                const username = account["username"];
+                const comment = account["comment"];
+                document.getElementById("profile_name").innerHTML = username;
+                // document.getElementById("comment").innerHTML = comment;
+                const id = account['id'];
+                const contents = await fetchJSON("api/article/find",{
+                    id_user: id
+                });
+
+                const content = contents[0];
+
                 
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,

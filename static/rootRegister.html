@@ -33,6 +33,7 @@
             <textArea name="text" class="text_val" placeholder="詳細" style="height: 100px;"></textArea>
             <br>
         </form>
+
     </div>
     <div class="position1">
         <h2>地図</h2>
@@ -45,8 +46,6 @@
             const text_ids = []; //text id の識別子
 
             const button = document.getElementById('btn_write');
-
-
             async function submit_data(){
                 if(i == 0){
                     alert("コンテンツを追加してください");
@@ -69,9 +68,7 @@
                     });
 
                     const id = account['id'];//
-                    console.log(id);
-
-                    
+                    console.log(id);                    
 
                     for(let j = 0; j < location.length; j++){
                         location_x.push(location[j][0]);
@@ -286,7 +283,6 @@
 
                 console.log(i);
                 console.log(text_ids);
-
             }
             $('.fileinput').on('change', function(){
                 let file = $(this).prop('files')[0];

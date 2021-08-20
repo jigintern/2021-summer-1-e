@@ -62,6 +62,8 @@ h3{
     background: #cde4ff;
     border-top: solid 5px #5989cf;
     border-bottom: solid 5px #5989cf;
+    height: auto;
+    overflow:hidden;
 }
 .tripbox p {
     margin: 0;
@@ -74,5 +76,10 @@ h2[id="triptitle"]{
 }
 img[id="logo"]{
     width: 40px;
+    height: auto;
+}
+img[id="triplistimg"]{
+    position: relative;
+    width: 40%;
     height: auto;
 }

@@ -37,6 +37,7 @@
     line-height   : 1em;         /* 1行の高さ  */
     transition    : .3s;         /* なめらか変化 */
     border        : 2px solid #003300;    /* 枠の指定 */
+    padding-top   : 10px;
   }
   .button1:hover {
     background-color: #299b42;
