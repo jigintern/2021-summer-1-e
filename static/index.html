@@ -18,8 +18,10 @@
     </div>
     <div id="how_login">
         <a title="ログインはこちら" id="login_page" href="./login.html">ログイン</a>
+        
     </div>
     <a title="プロフィール(仮)" id="profile_page" href="./root.html">他人から見たルート</a>
+    
     <hr>
 
     <script type=module>
@@ -107,7 +109,21 @@
             link("データ CC BY Code for Fukui", "https://github.com/code4fukui/find47/");
             link("アプリ CC BY Code for Fukui", "https://fukuno.jig.jp/3226");
         };
+
+        
+
     </script>
+        
+    <script>
+        function logout_bt(){
+            const hashKey = sessionStorage.getItem('hashKey');
+            console.log(hashKey);
+            sessionStorage.removeItem('hashKey');
+            location.reload();
+        }
+    </script>
+
+    <button value="ログアウト" id="logout" onclick="logout_bt()">ログアウト</button>
 </body>
 
 </html>
