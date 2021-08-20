@@ -19,39 +19,25 @@
     </head>
     <body>
         <h1><a id="homepage" href="./index.html">TRIP LIST</a></h1>
-        <h2>ルート</h2>  
-        <input type="button" value="ルート1" onclick="clickBtn1()" class="button1"/>
-        <div id="p1" class="hidden">ルート詳細</div>
+        <h2 id="title_name">ルート</h2>  
+        <div>
+            <input type="button" value="ルート1" onclick="clickBtn1()" class="button1"/>
+            <div id="p1" class="hidden">ルート詳細</div>
+        </div>
         <script>
         document.getElementById("p1").style.display ="none";
         </script>
         <div class="formBalloon" style="position: absolute; z-index: 2;">
             <div class="formBalloonContent"></div>
             <div class="formBalloonArrow"></div>
-          </div>
+        </div>
         <div class="position1">
             <h2><a href="./rootRegister.html">地図</a></h2> 
             <div id="map"></div>
-            <script>
-                
-
-                //var marker = L.marker([35.94354, 136.1884]).addTo(mymap);
-                //marker.bindPopup("<p>popup1</p><p>地図表示時に一緒に表示されます。</p>").openPopup();
-
-                //var marker2 = L.marker([35.9432, 136.1889]).addTo(mymap);
-                // var popup = L.popup();
-                // function onMarker2Click(e) {
-                //    popup
-                //        .setLatLng(e.latlng)
-                //        .setContent("<p>popup2</p><p>clickで表示されます。</p>" + e.latlng.toString())
-                //       .openOn(mymap);
-                //}
-                //mymap.on('click', onMarker2Click);
-             </script>
         </div>
         <div class="position2">
             <h2>投稿者コメント</h2>
-            <p>取得した値 </p>
+            <p id="comment_text">取得した値 </p>
             <br><br><br><br><br><br>
             <a href="./profile.html">
             <img src="sample.png"  width="50" height="50">
@@ -80,20 +66,38 @@
                 const hashKey = sessionStorage.getItem("hashKey");
                     const account = await fetchJSON("/api/account/findByHashKey", {
                     hashKey: hashKey
-            });
+                });
 
-            const username = account["username"];
-            const comment = account["comment"];
-            document.getElementById("profile_name").innerHTML = username;
-            // document.getElementById("comment").innerHTML = comment;
-            const id = account['id'];
-            const contents = await fetchJSON("api/article/find",{
-                id_user: id
-            });
+                const username = account["username"];
+                const comment = account["comment"];
+                document.getElementById("profile_name").innerHTML = username;
+                // document.getElementById("comment").innerHTML = comment;
+                const id = account['id'];
+                const contents = await fetchJSON("api/article/find",{
+                    id_user: id
+                });
 
-            console.log(contents);
+                const query = location.search;
+                const value = query.split('=');
+                const content = contents[value[1]];
+
+                console.log(content);
+
+                document.getElementById("title_name").textContent = content[2];
+                document.getElementById("comment_text").textContent = content[8];
+                const x = content[3].split(',');
+                const y = content[4].split(',');
+                const name_data_ = content[6].split(',');
+
+                const len = x.length;
+
+                for(let ln=0; ln < len; ln++){
+                    L.marker([x[ln], y[ln]]).bindPopup(name_data_[ln]).addTo(mymap);
+                }
+
+
            
-        }
+            }
         </script>
     </body>
 </html> 
