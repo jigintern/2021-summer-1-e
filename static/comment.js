@@ -22,7 +22,7 @@ window.onload = async () => {
 
 btn_write.onclick = async () => {
     const item = {
-        name: inp_name.value,
+        name: profile_name.value,
         body: inp_body.value,
         date: new Date().toString()
     };
